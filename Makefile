@@ -6,47 +6,50 @@
 #    By: kyang <kyang@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/31 16:25:43 by kyang             #+#    #+#              #
-#    Updated: 2025/03/31 14:12:41 by kyang            ###   ########.fr        #
+#    Updated: 2025/04/01 16:47:34 by kyang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 
-CC = cc
+SRCDIR = src
+OBJDIR = obj
+INCDIR = include
 
-SRC_PATH = src/
-SRC 	= main.c
-
-SRCS	= $(addprefix $(SRC_PATH), $(SRC))
+SRC = main.c verify_input.c
+SRCS = $(addprefix $(SRCDIR)/, $(SRC))
 
 LIBFT = ./libft
+MINILIBX = ./minilibx-linux
 
-CFLAGS = -Wall -Wextra -Werror 
+OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
 
-OBJS = $(SRCS:.c=.o)
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -I$(INCDIR)
 
 all: $(NAME)
 
-bonus: $(NAME_BONUS)
+$(OBJDIR):
+	mkdir -p $(OBJDIR)
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
+	$(CC) $(CFLAGS) -MMD -MP -c $< -o $@
+
+-include $(OBJS:.o=.d)
 
 $(NAME): $(OBJS) $(LIBFT)
-	make all bonus -C libft
-	make -C minilibx-linux
-	$(CC) $(CFLAGS) $(OBJS) -Lminilibx-linux -lmlx_Linux -L/usr/lib -Iminilibx-linux -lXext -lX11 -lm -lz ./libft/libft.a -o $(NAME)
-	
-%.o: %.c
-	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -I $(LIBFT) -O3 -c $< -o $@
+	make -C $(LIBFT)
+	make -C $(MINILIBX)
+	$(CC) $(CFLAGS) $(OBJS) -L$(MINILIBX) -L/usr/lib -I$(MINILIBX) -lXext -lX11 -lm -lz $(MINILIBX)/libmlx.a ./libft/libft.a -o $(NAME)
 
 clean:
-	rm -f $(OBJS)
-	rm -f $(OBJS_BONUS)
-	make -C $(LIBFT) clean
+	rm -rf $(OBJDIR)
+	make -C libft clean
 
 fclean: clean
 	rm -f $(NAME)
-	rm -f $(NAME_BONUS)
-	make -C $(LIBFT) fclean
+	make -C libft fclean
 	
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
