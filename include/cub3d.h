@@ -19,6 +19,8 @@
 # include "../libft/get_next_line.h"
 # include "../minilibx-linux/mlx.h"
 
+typedef struct s_player t_player;
+
 typedef struct	s_image {
 	void	*img;
 	char	*addr;
@@ -30,14 +32,16 @@ typedef struct	s_image {
 	int		zoom;
 }	t_image;
 
-// typedef struct s_map
-// {
-// 	int		x;
-// 	int		y;
-// 	int		xi;
-// 	int		yi;
-// 	int		size;
-// }	t_map;
+typedef struct s_map
+{
+	int		x;
+	int		y;
+	int		size;
+	int		h_max;
+	int		w_max;
+	int		map_start;
+	char		**final_map;
+}	t_map;
 
 typedef struct s_mlx
 {
@@ -53,6 +57,10 @@ typedef struct s_player
 	double posY;
 	double dirX;
 	double dirY;
+	double planeX;
+	double planeY;
+	int		mapX;
+	int		mapY;
 	double camX;
 	double rayDirX;
 	double rayDirY;
@@ -61,6 +69,22 @@ typedef struct s_player
 	double deltaDistX;
 	double deltaDistY;
 	double perpWallDist;
+	int		stepX;
+	int		stepY;
+	int		hit;
+	int		side;
+	int		lineHeight;
+	int	 drawStart;
+	int	 drawEnd;
 } t_player;
+
+// parsing
+void	map_init(t_map *map);
+void	map_delimit(t_map *map, char *file_map);
+int		ft_invalid(char *error_message);
+void	map_parsing(t_map *map, char *file_map);
+
+void	init_player_dir(t_player *player, t_map *map);
+void	init_player_cam(t_player *player, t_map *map);
 
 #endif

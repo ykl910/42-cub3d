@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kyang <kyang@student.42.fr>                +#+  +:+       +#+         #
+#    By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/31 16:25:43 by kyang             #+#    #+#              #
-#    Updated: 2025/04/01 16:47:34 by kyang            ###   ########.fr        #
+#    Updated: 2025/04/02 15:43:55 by tbellest         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCDIR = src
 OBJDIR = obj
 INCDIR = include
 
-SRC = main.c verify_input.c
+SRC = main.c verify_input.c utils.c parsing.c
 SRCS = $(addprefix $(SRCDIR)/, $(SRC))
 
 LIBFT = ./libft
@@ -25,7 +25,7 @@ MINILIBX = ./minilibx-linux
 OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I$(INCDIR)
+CFLAGS = -Wall -Wextra -Werror -I$(INCDIR) -g3
 
 all: $(NAME)
 
@@ -49,7 +49,7 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 	make -C libft fclean
-	
+
 re: fclean all
 
 .PHONY: all clean fclean re
