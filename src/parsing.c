@@ -6,7 +6,7 @@
 /*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:28:09 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/03 12:25:40 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/03 12:31:31 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,7 +226,7 @@ void	init_player_cam(t_player *player, t_map *map, t_env *env)
 		// printf("player->drawStart = %d\n", player->drawStart);
 		y = player->drawStart;
 		// printf("y = %d\n", y);
-		// printf("player->drawEnd = %d\n", player->drawEnd);
+		printf("player->drawEnd = %d\n", player->drawEnd);
 		while (y <= player->drawEnd)
 		{
 			draw_pixel_to_image(env, x, y, player->color);
