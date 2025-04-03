@@ -6,7 +6,7 @@
 /*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:28:09 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/03 11:16:24 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/03 11:41:26 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,8 +135,11 @@ void	init_player_dir(t_player *player, t_map *map)
 void	init_player_cam(t_player *player, t_map *map, t_env *env)
 {
 	int		x;
+	int		y;
 
+	y = 0;
 	x = 0;
+	player->hit = 0;
 	while (x < WINDOW_WIDTH)
     {
 		player->camX = 2 * x / (double)WINDOW_WIDTH - 1;
@@ -170,6 +173,7 @@ void	init_player_cam(t_player *player, t_map *map, t_env *env)
 			player->nearDistY = (player->mapY + 1.0 - player->posY) * player->deltaDistY;
 		}
 		//perform DDA
+		printf("player->hit = %d\n", player->hit);
 		while (player->hit == 0)
 		{
 			//jump to next map square, either in x-direction, or in y-direction
@@ -192,7 +196,7 @@ void	init_player_cam(t_player *player, t_map *map, t_env *env)
 			  	player->side = 3;
 			}
 			//Check if ray has hit a wall
-			if (map->final_map[player->mapX][player->mapY] > 0)
+			if (map->final_map[player->mapX][player->mapY] == '1')
 				player->hit = 1;
 		}
 		//Calculate distance of perpendicular ray (Euclidean distance would give fisheye effect!)
@@ -212,21 +216,22 @@ void	init_player_cam(t_player *player, t_map *map, t_env *env)
 		player->drawEnd = player->lineHeight / 2 + WINDOW_HEIGHT / 2;
 		if(player->drawEnd >= WINDOW_HEIGHT)
 			player->drawEnd = WINDOW_HEIGHT - 1;
-		if (player->side == 0)      // Face Est
-			player->color = 0xFF0000;      // Rouge
-		else if (player->side == 1) // Face Ouest
-			player->color = 0x990000;      // Rouge plus sombre
+		if (player->side == 0)		// Face Est
+			player->color = 0xFF0000;	// Rouge
+		else if (player->side == 1)	// Face Ouest
+			player->color = 0x990000;	// Rouge plus sombre
 		else if (player->side == 2) // Face Sud
-			player->color = 0x00FF00;      // Vert
-		else                        // Face Nord
-			player->color = 0x009900;      // Vert plus sombre
-		printf("player->drawStart = %d\n", player->drawStart);
-		int y = player->drawStart;
-		printf("player->drawEnd = %d\n", player->drawEnd);
-		while (y > player->drawEnd)
+			player->color = 0x00FF00;	// Vert
+		else 			// Face Nord
+			player->color = 0x009900;	// Vert plus sombre
+		// printf("player->drawStart = %d\n", player->drawStart);
+		y = player->drawStart;
+		// printf("y = %d\n", y);
+		// printf("player->drawEnd = %d\n", player->drawEnd);
+		while (y <= player->drawEnd)
 		{
 			draw_pixel_to_image(env, x, y, player->color);
-			y--;
+			y++;
 
 		}
 		x++;
@@ -253,7 +258,6 @@ void	init_mlx(t_env	*env, t_map *map, t_player *player)
 	env->win = mlx_new_window(env->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "FDF");
 	if (env->win == NULL)
 		return ;
-	printf("test1\n");
 	env->img = mlx_new_image(env->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	env->addr = mlx_get_data_addr(env->img, &env->bits_per_pixel, \
 	&env->line_length, &env->endian);
