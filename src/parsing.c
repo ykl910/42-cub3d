@@ -6,7 +6,7 @@
 /*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:28:09 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/02 17:27:02 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/03 11:16:24 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ void	init_player_dir(t_player *player, t_map *map)
 	}
 }
 
-void	init_player_cam(t_player *player, t_map *map)
+void	init_player_cam(t_player *player, t_map *map, t_env *env)
 {
 	int		x;
 
@@ -212,6 +212,54 @@ void	init_player_cam(t_player *player, t_map *map)
 		player->drawEnd = player->lineHeight / 2 + WINDOW_HEIGHT / 2;
 		if(player->drawEnd >= WINDOW_HEIGHT)
 			player->drawEnd = WINDOW_HEIGHT - 1;
+		if (player->side == 0)      // Face Est
+			player->color = 0xFF0000;      // Rouge
+		else if (player->side == 1) // Face Ouest
+			player->color = 0x990000;      // Rouge plus sombre
+		else if (player->side == 2) // Face Sud
+			player->color = 0x00FF00;      // Vert
+		else                        // Face Nord
+			player->color = 0x009900;      // Vert plus sombre
+		printf("player->drawStart = %d\n", player->drawStart);
+		int y = player->drawStart;
+		printf("player->drawEnd = %d\n", player->drawEnd);
+		while (y > player->drawEnd)
+		{
+			draw_pixel_to_image(env, x, y, player->color);
+			y--;
+
+		}
 		x++;
+		//printf("x = %d\n", x);
 	}
+}
+
+void	draw_pixel_to_image(t_env *env, int x, int y, int color)
+{
+	int	pixel_index;
+
+	if (x >= 0 && x < WINDOW_WIDTH && y >= 0 && y < WINDOW_HEIGHT)
+	{
+		pixel_index = (y * env->line_length) + (x * (env->bits_per_pixel / 8));
+		*(int *)(env->addr + pixel_index) = color;
+	}
+}
+
+void	init_mlx(t_env	*env, t_map *map, t_player *player)
+{
+	env->mlx = mlx_init();
+	if (env->mlx == NULL)
+		return ;
+	env->win = mlx_new_window(env->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "FDF");
+	if (env->win == NULL)
+		return ;
+	printf("test1\n");
+	env->img = mlx_new_image(env->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	env->addr = mlx_get_data_addr(env->img, &env->bits_per_pixel, \
+	&env->line_length, &env->endian);
+	if (env->addr == NULL)
+		return ;
+	init_player_cam(player, map, env);
+	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
+	mlx_loop(env->mlx);
 }
