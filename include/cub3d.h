@@ -11,6 +11,14 @@
 # define BLUE  0x0000FF
 # define GREEN 0x00FF00
 # define ESC 65307
+# define A 65
+# define D 68
+# define S 83
+# define W 87
+# define LEFT 65361
+# define RIGHT 65363
+# define UP 65362
+# define DOWN 65364
 
 # include <stdbool.h>
 # include <stdlib.h>
@@ -47,11 +55,11 @@ typedef struct s_env
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
-
 	int			x;
 	int			y;
 	int			zoom;
 	t_player	*player;
+	t_map		*map;
 }	t_env;
 
 typedef struct s_player
@@ -95,6 +103,6 @@ void	init_mlx(t_env	*env, t_map *map, t_player *player);
 void	draw_pixel_to_image(t_env *env, int x, int y, int color);
 int		handle_keypress(int keycode, t_env *env);
 
-
+void	free_ressources(t_map *map, t_env *env);
 
 #endif
