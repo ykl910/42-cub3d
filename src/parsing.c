@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:28:09 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/03 11:41:26 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/03 11:52:48 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,9 +139,10 @@ void	init_player_cam(t_player *player, t_map *map, t_env *env)
 
 	y = 0;
 	x = 0;
-	player->hit = 0;
+	
 	while (x < WINDOW_WIDTH)
-    {
+    {	
+		player->hit = 0;
 		player->camX = 2 * x / (double)WINDOW_WIDTH - 1;
 		player->rayDirX = player->dirX + player->planeX * player->camX;
 		player->rayDirY = player->dirY + player->planeY * player->camX;
@@ -173,7 +174,6 @@ void	init_player_cam(t_player *player, t_map *map, t_env *env)
 			player->nearDistY = (player->mapY + 1.0 - player->posY) * player->deltaDistY;
 		}
 		//perform DDA
-		printf("player->hit = %d\n", player->hit);
 		while (player->hit == 0)
 		{
 			//jump to next map square, either in x-direction, or in y-direction
@@ -224,10 +224,10 @@ void	init_player_cam(t_player *player, t_map *map, t_env *env)
 			player->color = 0x00FF00;	// Vert
 		else 			// Face Nord
 			player->color = 0x009900;	// Vert plus sombre
-		// printf("player->drawStart = %d\n", player->drawStart);
+		printf("player->drawStart = %d\n", player->drawStart);
 		y = player->drawStart;
 		// printf("y = %d\n", y);
-		// printf("player->drawEnd = %d\n", player->drawEnd);
+		printf("player->drawEnd = %d\n", player->drawEnd);
 		while (y <= player->drawEnd)
 		{
 			draw_pixel_to_image(env, x, y, player->color);
