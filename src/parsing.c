@@ -6,7 +6,7 @@
 /*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:28:09 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/03 11:41:26 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/03 12:25:40 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,9 +139,9 @@ void	init_player_cam(t_player *player, t_map *map, t_env *env)
 
 	y = 0;
 	x = 0;
-	player->hit = 0;
 	while (x < WINDOW_WIDTH)
-    {
+	{
+		player->hit = 0;
 		player->camX = 2 * x / (double)WINDOW_WIDTH - 1;
 		player->rayDirX = player->dirX + player->planeX * player->camX;
 		player->rayDirY = player->dirY + player->planeY * player->camX;
@@ -173,27 +173,26 @@ void	init_player_cam(t_player *player, t_map *map, t_env *env)
 			player->nearDistY = (player->mapY + 1.0 - player->posY) * player->deltaDistY;
 		}
 		//perform DDA
-		printf("player->hit = %d\n", player->hit);
 		while (player->hit == 0)
 		{
 			//jump to next map square, either in x-direction, or in y-direction
 			if (player->nearDistX < player->nearDistY)
 			{
-			  player->nearDistX += player->deltaDistX;
-			  player->mapX += player->stepX;
-			  if (player->stepX == 1)
-				player->side = 0;
-			  else
-			  	player->side = 1;
+				player->nearDistX += player->deltaDistX;
+				player->mapX += player->stepX;
+				if (player->stepX == 1)
+					player->side = 0;
+				else
+					player->side = 1;
 			}
 			else
 			{
-			  player->nearDistY += player->deltaDistY;
-			  player->mapY += player->stepY;
-			  if (player->stepY == 1)
-				player->side = 2;
-			  else
-			  	player->side = 3;
+				player->nearDistY += player->deltaDistY;
+				player->mapY += player->stepY;
+				if (player->stepY == 1)
+					player->side = 2;
+				else
+					player->side = 3;
 			}
 			//Check if ray has hit a wall
 			if (map->final_map[player->mapX][player->mapY] == '1')
@@ -217,13 +216,13 @@ void	init_player_cam(t_player *player, t_map *map, t_env *env)
 		if(player->drawEnd >= WINDOW_HEIGHT)
 			player->drawEnd = WINDOW_HEIGHT - 1;
 		if (player->side == 0)		// Face Est
-			player->color = 0xFF0000;	// Rouge
+			player->color = RED;
 		else if (player->side == 1)	// Face Ouest
-			player->color = 0x990000;	// Rouge plus sombre
+			player->color = WHITE;
 		else if (player->side == 2) // Face Sud
-			player->color = 0x00FF00;	// Vert
+			player->color = BLUE;
 		else 			// Face Nord
-			player->color = 0x009900;	// Vert plus sombre
+			player->color = GREEN;
 		// printf("player->drawStart = %d\n", player->drawStart);
 		y = player->drawStart;
 		// printf("y = %d\n", y);
@@ -264,6 +263,25 @@ void	init_mlx(t_env	*env, t_map *map, t_player *player)
 	if (env->addr == NULL)
 		return ;
 	init_player_cam(player, map, env);
+	mlx_key_hook(env->win, handle_keypress, env);
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 	mlx_loop(env->mlx);
+}
+
+int	handle_keypress(int keycode, t_env *env)
+{
+	if (keycode == ESC)
+	{
+		if (env->img)
+			mlx_destroy_image(env->mlx, env->img);
+		if (env->win)
+			mlx_destroy_window(env->mlx, env->win);
+		if (env->mlx)
+		{
+			mlx_destroy_display(env->mlx);
+			free(env->mlx);
+		}
+		exit(0);
+	}
+	return (0);
 }

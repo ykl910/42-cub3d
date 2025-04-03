@@ -6,6 +6,11 @@
 
 # define WINDOW_HEIGHT 1080
 # define WINDOW_WIDTH 1920
+# define RED 0xFF0000
+# define WHITE 0xFFFFFF
+# define BLUE  0x0000FF
+# define GREEN 0x00FF00
+# define ESC 65307
 
 # include <stdbool.h>
 # include <stdlib.h>
@@ -88,6 +93,8 @@ void	init_player_cam(t_player *player, t_map *map, t_env *env);
 
 void	init_mlx(t_env	*env, t_map *map, t_player *player);
 void	draw_pixel_to_image(t_env *env, int x, int y, int color);
+int		handle_keypress(int keycode, t_env *env);
+
 
 
 #endif
