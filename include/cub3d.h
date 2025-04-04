@@ -44,6 +44,7 @@ typedef struct s_map
 	int		w_max;
 	int		map_start;
 	char	**final_map;
+	char	*texture[6];
 }	t_map;
 
 typedef struct s_env
@@ -97,6 +98,9 @@ void	keys_init(t_env *env);
 
 
 // parsing
+void	parse_texture(t_map *map, char *line);
+void	check_texture(t_map *map, char *file_map);
+
 void	map_init(t_map *map);
 void	map_delimit(t_map *map, char *file_map);
 int		ft_invalid(char *error_message);
@@ -122,5 +126,6 @@ void	player_rotate_left(t_player *player);
 
 void	free_ressources(t_map *map, t_env *env);
 int		handle_destroy(t_env *env);
+void	free_char_arr(char **list);
 
 #endif
