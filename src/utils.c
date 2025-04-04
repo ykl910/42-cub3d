@@ -6,7 +6,7 @@
 /*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:34:38 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/04 15:10:38 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/04 15:33:00 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ft_invalid(char *error_message)
 {
-	ft_printf("Error\n");
-	ft_printf("%s\n", error_message);
+	ft_putstr_fd("Error\n", 2);
+	ft_putstr_fd(error_message, 2);
 	exit (1);
 }
 
@@ -30,6 +30,13 @@ void	free_ressources(t_map *map, t_env *env)
 		i++;
 	}
 	free(map->final_map);
+	i = 0;
+	while (i < 6)
+	{
+		if (map->texture[i])
+			free(map->texture[i]);
+		i++;
+	}
 	if (env->img)
 		mlx_destroy_image(env->mlx, env->img);
 	if (env->win)

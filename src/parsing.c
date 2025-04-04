@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:28:09 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/04 15:02:00 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/04 15:20:01 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,15 @@ void	map_delimit(t_map *map, char *file_map)
 
 	fd = open(file_map, O_RDONLY);
 	if (fd < 0)
-		ft_invalid("map invalid - no permission\n");
+		ft_invalid("Map invalid - no permission\n");
 	line = get_next_line(fd);
 	while (line)
 	{
+		parse_texture(map, line);
 		i = 0;
 		if (line[0] == ' ' || line[0] == '1')
 		{
-			check_map(line);
+			//check_map(line);
 			while(line[i])
 			{
 				i++;
@@ -77,6 +78,8 @@ void	map_parsing(t_map *map, char *file_map)
 		map->x = -1;
 		while (line[++map->x] != '\n')
 		{
+			if (line[map->x] != 'N' && line[map->x] != 'S' && line[map->x] != 'E' && line[map->x] != 'W' && line[map->x] != '0' && line[map->x] != '1')
+				ft_invalid("Invalid character in map\n");
 			map->final_map[map->y][map->x] = (line[map->x]);
 			if (line[map->x] == ' ')
 				map->final_map[map->y][map->x] = '2';

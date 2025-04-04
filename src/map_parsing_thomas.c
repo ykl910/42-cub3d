@@ -39,16 +39,16 @@ void	ft_btwo(void *s, size_t n)
 	}
 }
 
-void	check_map(char *line)
-{
-	int	i;
-	int	len;
+// void	check_map(char *line)
+// {
+// 	int	i;
+// 	int	len;
 
-	len = ft_strlen(line);
-	i = 0;
-	if
-	while (line[i])
-	{
+// 	len = ft_strlen(line);
+// 	i = 0;
+// 	if
+// 	while (line[i])
+// 	{
 
-	}
-}
+// 	}
+// }
