@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 14:35:41 by kyang             #+#    #+#             */
-/*   Updated: 2025/04/04 15:31:34 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/04 16:21:08 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,7 @@ void	parse_texture(t_map *map, char *line)
 			map->texture[5] = ft_strdup(split_line[i + 1]);
 		i++;
 	}
+	if (i > 2)
+		ft_invalid("Invalid texture format");
 	free_char_arr(split_line);
 }

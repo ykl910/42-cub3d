@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 14:11:40 by kyang             #+#    #+#             */
-/*   Updated: 2025/04/04 15:29:25 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/04 16:17:30 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 	map_init(&map);
 	map_delimit(&map, argv[1]);
 	map_parsing(&map, argv[1]);
-	//print_map(&map);
+	print_map(&map);
 	init_player_dir(&player, &map);
 	env.player = &player;
 	env.map = &map;

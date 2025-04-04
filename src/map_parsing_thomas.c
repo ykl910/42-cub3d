@@ -46,10 +46,8 @@ void	check_map_wall(char *line)
 
 	len = ft_strlen(line);
 	i = 0;
-	printf("line = %s\n", line);
 	while (line[i] != '\0' && line[i] == ' ')
 		i++;
-	printf("i = %d, line[i] = %c \n", i, line[i]);
 	if (line[i] != '1')
 	{
 		free(line);
