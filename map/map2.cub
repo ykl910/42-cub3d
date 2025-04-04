@@ -6,7 +6,7 @@
 #    By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/31 15:21:21 by kyang             #+#    #+#              #
-#    Updated: 2025/04/04 11:50:17 by tbellest         ###   ########.fr        #
+#    Updated: 2025/04/04 13:04:23 by tbellest         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NO ./../texture/no
 SO ./../texture/so
 WE ./../texture/we
 EA ./../texture/ea
+
 F 220,100,0
 C 225,30,0
 

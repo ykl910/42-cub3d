@@ -6,7 +6,7 @@
 /*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 14:11:40 by kyang             #+#    #+#             */
-/*   Updated: 2025/04/04 12:56:56 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/04 12:59:13 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	main(int argc, char **argv)
 	t_env		env;
 
 	(void)argc;
-	(void)argv;
 
 	keys_init(&env);
 	map_init(&map);
