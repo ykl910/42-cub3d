@@ -6,7 +6,7 @@
 /*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:28:09 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/03 13:24:27 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/04 09:33:36 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,44 +79,3 @@ void	map_parsing(t_map *map, char *file_map)
 	}
 	close(fd);
 }
-
-void	draw_pixel_to_image(t_env *env, int x, int y, int color)
-{
-	int	pixel_index;
-
-	if (x >= 0 && x < WINDOW_WIDTH && y >= 0 && y < WINDOW_HEIGHT)
-	{
-		pixel_index = (y * env->line_length) + (x * (env->bits_per_pixel / 8));
-		*(int *)(env->addr + pixel_index) = color;
-	}
-}
-
-void	init_mlx(t_env	*env, t_map *map, t_player *player)
-{
-	env->mlx = mlx_init();
-	if (env->mlx == NULL)
-		return ;
-	env->win = mlx_new_window(env->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "FDF");
-	if (env->win == NULL)
-		return ;
-	env->img = mlx_new_image(env->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	env->addr = mlx_get_data_addr(env->img, &env->bits_per_pixel, \
-	&env->line_length, &env->endian);
-	if (env->addr == NULL)
-		return ;
-	init_player_cam(player, map, env);
-	mlx_key_hook(env->win, handle_keypress, env);
-	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
-	mlx_loop(env->mlx);
-}
-
-int	handle_keypress(int keycode, t_env *env)
-{
-	if (keycode == ESC)
-	{
-		free_ressources(env->map, env);
-		exit(0);
-	}
-	return (0);
-}
-

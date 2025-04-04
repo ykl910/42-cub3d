@@ -6,7 +6,7 @@
 #    By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/31 16:25:43 by kyang             #+#    #+#              #
-#    Updated: 2025/04/03 13:24:52 by tbellest         ###   ########.fr        #
+#    Updated: 2025/04/04 12:55:31 by tbellest         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ SRCDIR = src
 OBJDIR = obj
 INCDIR = include
 
-SRC = main.c verify_input.c utils.c parsing.c raycasting.c
+SRC = main.c verify_input.c utils.c parsing.c raycasting.c handle_mlx.c \
+		move_player.c rotate_player.c initialize.c
 SRCS = $(addprefix $(SRCDIR)/, $(SRC))
 
 LIBFT = ./libft

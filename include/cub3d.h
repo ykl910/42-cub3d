@@ -11,10 +11,10 @@
 # define BLUE  0x0000FF
 # define GREEN 0x00FF00
 # define ESC 65307
-# define A 65
-# define D 68
-# define S 83
-# define W 87
+# define A 97
+# define D 100
+# define S 115
+# define W 119
 # define LEFT 65361
 # define RIGHT 65363
 # define UP 65362
@@ -58,6 +58,7 @@ typedef struct s_env
 	int			x;
 	int			y;
 	int			zoom;
+	int			keys[70000];
 	t_player	*player;
 	t_map		*map;
 }	t_env;
@@ -87,8 +88,13 @@ typedef struct s_player
 	int		lineHeight;
 	int		drawStart;
 	int		drawEnd;
-	int			color;
+	int		color;
 } t_player;
+
+
+// init
+void	keys_init(t_env *env);
+
 
 // parsing
 void	map_init(t_map *map);
@@ -99,10 +105,22 @@ void	map_parsing(t_map *map, char *file_map);
 void	init_player_dir(t_player *player, t_map *map);
 void	init_player_cam(t_player *player, t_map *map, t_env *env);
 
-void	init_mlx(t_env	*env, t_map *map, t_player *player);
+void	init_mlx(t_env	*env);
 void	draw_pixel_to_image(t_env *env, int x, int y, int color);
-int		handle_keypress(int keycode, t_env *env);
+int		render_loop(t_env *env);
+int		key_press(int keycode, t_env *env);
+int		key_release(int keycode, t_env *env);
+
+// keys
+void	player_move_backward(t_player *player, t_map *map);
+void	player_move_forward(t_player *player, t_map *map);
+void	player_move_left(t_player *player, t_map *map);
+void	player_move_right(t_player *player, t_map *map);
+
+void	player_rotate_right(t_player *player);
+void	player_rotate_left(t_player *player);
 
 void	free_ressources(t_map *map, t_env *env);
+int		handle_destroy(t_env *env);
 
 #endif
