@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:28:09 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/04 16:19:40 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/04 16:44:11 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,17 +69,14 @@ void	map_parsing(t_map *map, char *file_map)
 	char	*line;
 
 	fd = open(file_map, O_RDONLY);
-	map->final_map = ft_calloc_two(map->h_max, sizeof(char *));
+	map->final_map = ft_calloc(map->h_max, sizeof(char *));
 	if (!map->final_map)
 		ft_invalid("Malloc failled !\n");
-	//printf("%d\n", map->map_start);
 	while (map->map_start-- > 0)
 	{
 		line = get_next_line(fd);
 		free(line);
 	}
-	//printf("%d\n", map->h_max);
-	//printf("%d", map->w_max);
 	while (map->y < map->h_max)
 	{
 		map->final_map[map->y] = ft_calloc_two(map->w_max, sizeof(char));
@@ -89,12 +86,16 @@ void	map_parsing(t_map *map, char *file_map)
 		map->x = -1;
 		while (line[++map->x] != '\n')
 		{
-			if (line[map->x] != 'N' && line[map->x] != 'S' && line[map->x] != 'E' && line[map->x] != 'W' && line[map->x] != '0' && line[map->x] != '1' && line[map->x] != ' ')
+			if (line[map->x] != 'N' && line[map->x] != 'S' && line[map->x] != 'E' &&
+				line[map->x] != 'W' && line[map->x] != '0' && line[map->x] != '1' && line[map->x] != ' ')
 				ft_invalid("Invalid character in map\n");
-			map->final_map[map->y][map->x] = (line[map->x]);
+			
 			if (line[map->x] == ' ')
 				map->final_map[map->y][map->x] = '2';
+			else
+				map->final_map[map->y][map->x] = (line[map->x]);
 		}
+		map->final_map[map->y][map->w_max] = '\0';
 		map->y++;
 		free(line);
 	}
