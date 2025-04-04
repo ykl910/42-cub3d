@@ -5,6 +5,7 @@
 		"x.h": "c",
 		"keysym.h": "c",
 		"mlx.h": "c",
-		"stdio.h": "c"
+		"stdio.h": "c",
+		"cub3d.h": "c"
 	}
 }

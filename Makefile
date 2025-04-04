@@ -6,7 +6,7 @@
 #    By: kyang <kyang@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/31 16:25:43 by kyang             #+#    #+#              #
-#    Updated: 2025/04/04 14:37:04 by kyang            ###   ########.fr        #
+#    Updated: 2025/04/04 15:10:27 by kyang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ OBJDIR = obj
 INCDIR = include
 
 SRC = main.c verify_input.c utils.c parsing.c raycasting.c handle_mlx.c \
-		move_player.c rotate_player.c initialize.c parse_texture.c
+		move_player.c rotate_player.c initialize.c map_parsing_thomas.c
 SRCS = $(addprefix $(SRCDIR)/, $(SRC))
 
 LIBFT = ./libft

@@ -6,7 +6,7 @@
 /*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:34:38 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/04 14:44:21 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/04 15:10:38 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	ft_invalid(char *error_message)
 {
-	printf("%s\n", error_message);
+	ft_printf("Error\n");
+	ft_printf("%s\n", error_message);
 	exit (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:28:09 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/04 09:33:36 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/04 15:02:00 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,11 @@ void	map_delimit(t_map *map, char *file_map)
 		i = 0;
 		if (line[0] == ' ' || line[0] == '1')
 		{
+			check_map(line);
 			while(line[i])
+			{
 				i++;
+			}
 			if (map->w_max < i)
 				map->w_max = i;
 			map->h_max++;
@@ -57,7 +60,7 @@ void	map_parsing(t_map *map, char *file_map)
 	char	*line;
 
 	fd = open(file_map, O_RDONLY);
-	map->final_map = ft_calloc(map->h_max, sizeof(char *));
+	map->final_map = ft_calloc_two(map->h_max, sizeof(char *));
 	if (!map->final_map)
 		ft_invalid("Malloc failled !\n");
 	while (map->map_start-- > 0)
@@ -67,13 +70,17 @@ void	map_parsing(t_map *map, char *file_map)
 	}
 	while (map->y < map->h_max)
 	{
-		map->final_map[map->y] = ft_calloc(map->w_max, sizeof(char));
+		map->final_map[map->y] = ft_calloc_two(map->w_max, sizeof(char));
 		if (!map->final_map[map->y])
 			ft_invalid("Malloc failled !\n");
 		line = get_next_line(fd);
 		map->x = -1;
 		while (line[++map->x] != '\n')
+		{
 			map->final_map[map->y][map->x] = (line[map->x]);
+			if (line[map->x] == ' ')
+				map->final_map[map->y][map->x] = '2';
+		}
 		map->y++;
 		free(line);
 	}
