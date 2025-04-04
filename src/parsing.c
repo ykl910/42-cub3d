@@ -6,7 +6,7 @@
 /*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:28:09 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/04 15:02:00 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/04 15:16:35 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,9 @@ void	map_delimit(t_map *map, char *file_map)
 		i = 0;
 		if (line[0] == ' ' || line[0] == '1')
 		{
-			check_map(line);
+			check_map_wall(line);
 			while(line[i])
-			{
 				i++;
-			}
 			if (map->w_max < i)
 				map->w_max = i;
 			map->h_max++;

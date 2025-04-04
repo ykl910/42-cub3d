@@ -39,16 +39,27 @@ void	ft_btwo(void *s, size_t n)
 	}
 }
 
-void	check_map(char *line)
+void	check_map_wall(char *line)
 {
 	int	i;
 	int	len;
 
 	len = ft_strlen(line);
 	i = 0;
-	if
-	while (line[i])
+	printf("line = %s\n", line);
+	while (line[i] != '\0' && line[i] == ' ')
+		i++;
+	printf("i = %d, line[i] = %c \n", i, line[i]);
+	if (line[i] != '1')
 	{
-
+		free(line);
+		ft_invalid("map invalid - no wall\n");
+	}
+	while (line[len - 2] == ' ' && len > 1)
+		len--;
+	if (line[len - 2] != '1')
+	{
+		free(line);
+		ft_invalid("map invalid - no wall\n");
 	}
 }
