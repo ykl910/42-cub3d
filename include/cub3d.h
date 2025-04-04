@@ -96,6 +96,12 @@ typedef struct s_player
 void	keys_init(t_env *env);
 
 
+//	map parsing thomas
+void	*ft_calloc_two(size_t count, size_t size);
+void	ft_btwo(void *s, size_t n);
+void	print_map(t_map *map);
+
+
 // parsing
 void	map_init(t_map *map);
 void	map_delimit(t_map *map, char *file_map);
