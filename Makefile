@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+         #
+#    By: kyang <kyang@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/31 16:25:43 by kyang             #+#    #+#              #
-#    Updated: 2025/04/04 14:44:27 by tbellest         ###   ########.fr        #
+#    Updated: 2025/04/04 15:26:44 by kyang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ SRCDIR = src
 OBJDIR = obj
 INCDIR = include
 
-SRC = main.c verify_input.c utils.c parsing.c raycasting.c handle_mlx.c \
-		move_player.c rotate_player.c initialize.c map_parsing_thomas.c
+SRC = main.c utils.c parsing.c raycasting.c handle_mlx.c \
+		move_player.c rotate_player.c initialize.c map_parsing_thomas.c parse_texture.c
 SRCS = $(addprefix $(SRCDIR)/, $(SRC))
 
 LIBFT = ./libft
