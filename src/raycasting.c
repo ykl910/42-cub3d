@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 13:12:21 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/07 12:39:07 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/07 15:33:45 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,13 +163,25 @@ void	init_player_cam(t_player *player, t_map *map, t_env *env)
 			player->color = BLUE;
 		else 			// Face Nord
 			player->color = GREEN;
-		// printf("player->drawStart = %d\n", player->drawStart);
+
 		y = player->drawStart;
 		// printf("y = %d\n", y);
 		// printf("player->drawEnd = %d\n", player->drawEnd);
 		while (y <= player->drawEnd)
 		{
-			draw_pixel_to_image(env, x, y, player->color);
+			player->texY = (int)(((y - player->drawStart) * env->textures[player->side]->height) / player->lineHeight);
+			printf("player->texY = %d\n", player->texY);
+			if (x >= 0 && x < WINDOW_WIDTH && y >= 0 && y < WINDOW_HEIGHT)
+			{
+				unsigned int color = *(unsigned int *)(&env->textures[player->side]->data[
+					player->texY * env->textures[player->side]->line_length + player->texX * (env->textures[player->side]->bits_per_pixel / 8)
+				]);
+				printf("color = %u\n", color);
+				*(unsigned int *)(&env->addr[
+					y * env->line_length + x * env->bits_per_pixel / 8
+				]) = color;
+			}
+			//draw_pixel_to_image(env, x, y, player->color);
 			y++;
 		}
 		x++;
