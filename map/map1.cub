@@ -1,9 +1,8 @@
 
-
-NO ./../texture/no
-SO ./../texture/so
-WE ./../texture/we
-EA ./../texture/ea
+NO ./../texture/no_bluestone.xpm
+SO ./../texture/so_purplestone.xpm
+WE ./../texture/we_redbrick.xpm
+EA ./../texture/ea_wood.xpm
 
 F 220,100,0
 C 225,30,0

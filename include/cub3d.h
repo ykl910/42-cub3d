@@ -44,7 +44,7 @@ typedef struct s_map
 	int		w_max;
 	int		map_start;
 	char	**final_map;
-	char	*texture[6];
+
 }	t_map;
 
 typedef struct s_env
@@ -62,6 +62,10 @@ typedef struct s_env
 	int			keys[70000];
 	t_player	*player;
 	t_map		*map;
+	char		*texture_path[6];
+	void		*texture[4];
+	int			texture_width[4];
+	int			texture_height[4];
 }	t_env;
 
 typedef struct s_player

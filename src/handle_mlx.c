@@ -3,29 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   handle_mlx.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 09:33:08 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/04 12:53:14 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/07 11:35:44 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_mlx(t_env	*env)
-{
-	env->mlx = mlx_init();
-	if (env->mlx == NULL)
-		return ;
-	env->win = mlx_new_window(env->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "FDF");
-	if (env->win == NULL)
-		return ;
-	env->img = mlx_new_image(env->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	env->addr = mlx_get_data_addr(env->img, &env->bits_per_pixel, \
-	&env->line_length, &env->endian);
-	if (env->addr == NULL)
-		return ;
-}
+
 
 int	render_loop(t_env *env)
 {
