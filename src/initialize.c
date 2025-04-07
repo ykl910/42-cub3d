@@ -43,12 +43,6 @@ void	init_texture(t_env *env)
 	int			i;
 
 	i = 0;
-	if (access(env->texture_path[i], F_OK) != 0)
-	{
-		printf("texture path[%d]: %s\n", i, env->texture_path[i]);
-		ft_putstr_fd("Erreur: fichier de texture introuvable\n", 2);
-		exit(1);
-	}
 	while (i < 4)
 	{
 		//printf("texture path[%d]: %s\n", i, env->texture_path[i]);
