@@ -122,11 +122,10 @@ void	check_map_wall(char *line);
 
 
 // parsing
-void	parse_texture(t_map *map, char *line);
-void	check_texture(t_map *map, char *file_map);
+void	parse_texture(char *line, t_env *env);
 
-void	map_init(t_map *map);
-void	map_delimit(t_map *map, char *file_map);
+void	map_init(t_map *map, t_env *env);
+void	map_delimit(t_map *map, char *file_map, t_env *env);
 int		ft_invalid(char *error_message);
 void	map_parsing(t_map *map, char *file_map);
 

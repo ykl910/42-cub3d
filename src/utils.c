@@ -6,7 +6,7 @@
 /*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:34:38 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/04 15:41:30 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/07 12:45:36 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	free_ressources(t_map *map, t_env *env)
 	i = 0;
 	while (i < 6)
 	{
-		if (map->texture[i])
-			free(map->texture[i]);
+		if (env->texture_path[i])
+			free(env->texture_path[i]);
 		i++;
 	}
 	if (env->img)

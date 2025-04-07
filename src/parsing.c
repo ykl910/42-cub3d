@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:28:09 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/04 16:44:11 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/07 12:55:44 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	map_init(t_map *map)
+void	map_init(t_map *map, t_env *env)
 {
 	int	i;
 
@@ -25,12 +25,12 @@ void	map_init(t_map *map)
 	map->final_map = NULL;
 	while (i < 6)
 	{
-		map->texture[i] = NULL;
+		env->texture_path[i] = NULL;
 		i++;
 	}
 }
 
-void	map_delimit(t_map *map, char *file_map)
+void	map_delimit(t_map *map, char *file_map, t_env *env)
 {
 	int		fd;
 	char	*line;
@@ -43,7 +43,7 @@ void	map_delimit(t_map *map, char *file_map)
 	while (line)
 	{
 		i = 0;
-		if (map->texture[5] && line[0] != '\n')
+		if (env->texture_path[5] && line[0] != '\n')
 		{
 			check_map_wall(line);
 			while(line[i])
@@ -54,7 +54,7 @@ void	map_delimit(t_map *map, char *file_map)
 		}
 		else
 		{
-			parse_texture(map, line);
+			parse_texture(line, env);
 			map->map_start++;
 		}
 		free(line);
@@ -89,7 +89,7 @@ void	map_parsing(t_map *map, char *file_map)
 			if (line[map->x] != 'N' && line[map->x] != 'S' && line[map->x] != 'E' &&
 				line[map->x] != 'W' && line[map->x] != '0' && line[map->x] != '1' && line[map->x] != ' ')
 				ft_invalid("Invalid character in map\n");
-			
+
 			if (line[map->x] == ' ')
 				map->final_map[map->y][map->x] = '2';
 			else

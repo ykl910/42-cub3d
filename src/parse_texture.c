@@ -6,13 +6,13 @@
 /*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 14:35:41 by kyang             #+#    #+#             */
-/*   Updated: 2025/04/04 16:21:08 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/07 12:55:51 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	parse_texture(t_map *map, char *line)
+void	parse_texture(char *line, t_env *env)
 {
 	char	**split_line;
 	int		i;
@@ -24,17 +24,17 @@ void	parse_texture(t_map *map, char *line)
 	while (split_line[i])
 	{
 		if (ft_strncmp(split_line[i], "NO", 2) == 0)
-			map->texture[0] = ft_strdup(split_line[i + 1]);
+			env->texture_path[0] = ft_strdup(split_line[i + 1]);
 		else if (ft_strncmp(split_line[i], "SO", 2) == 0)
-			map->texture[1] = ft_strdup(split_line[i + 1]);
+			env->texture_path[1] = ft_strdup(split_line[i + 1]);
 		else if (ft_strncmp(split_line[i], "WE", 2) == 0)
-			map->texture[2] = ft_strdup(split_line[i + 1]);
+			env->texture_path[2] = ft_strdup(split_line[i + 1]);
 		else if (ft_strncmp(split_line[i], "EA", 2) == 0)
-			map->texture[3] = ft_strdup(split_line[i + 1]);
+			env->texture_path[3] = ft_strdup(split_line[i + 1]);
 		else if (ft_strncmp(split_line[i], "F", 1) == 0)
-			map->texture[4] = ft_strdup(split_line[i + 1]);
+			env->texture_path[4] = ft_strdup(split_line[i + 1]);
 		else if (ft_strncmp(split_line[i], "C", 1) == 0)
-			map->texture[5] = ft_strdup(split_line[i + 1]);
+			env->texture_path[5] = ft_strdup(split_line[i + 1]);
 		i++;
 	}
 	if (i > 2)
