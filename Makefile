@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+         #
+#    By: kyang <kyang@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/31 16:25:43 by kyang             #+#    #+#              #
-#    Updated: 2025/04/07 18:27:37 by tbellest         ###   ########.fr        #
+#    Updated: 2025/04/07 18:37:33 by kyang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,14 +16,20 @@ SRCDIR = src
 OBJDIR = obj
 INCDIR = include
 
-SRC = main.c utils.c parsing/parse_map.c raycasting/raycasting.c graphic/handle_mlx.c \
-		graphic/move_player.c graphic/rotate_player.c initialize.c parsing/parse_texture.c
+
+SRC_MAIN = main.c
+SRC_UTILS = utils.c
+SRC_PARSING = parsing/parse_map.c parsing/parse_texture.c
+SRC_RAYCASTING = raycasting/raycasting.c
+SRC_GRAPHIC = graphic/handle_mlx.c graphic/move_player.c graphic/rotate_player.c
+SRC_INITIALIZE = initialize.c
+SRC = $(SRC_MAIN) $(SRC_UTILS) $(SRC_PARSING) $(SRC_RAYCASTING) $(SRC_GRAPHIC) $(SRC_INITIALIZE)
 SRCS = $(addprefix $(SRCDIR)/, $(SRC))
 
 LIBFT = ./libft
 MINILIBX = ./minilibx-linux
 
-OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
+OBJS = $(patsubst %.c, $(OBJDIR)/%.o, $(SRCS))
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I$(INCDIR) -g3
@@ -31,9 +37,10 @@ CFLAGS = -Wall -Wextra -Werror -I$(INCDIR) -g3
 all: $(NAME)
 
 $(OBJDIR):
-	mkdir -p $(OBJDIR)
+	mkdir -p $(OBJDIR) || true
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
+$(OBJDIR)/%.o: %.c | $(OBJDIR)
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -MMD -MP -c $< -o $@
 
 -include $(OBJS:.o=.d)
