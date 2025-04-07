@@ -40,13 +40,32 @@ void	init_mlx(t_env	*env)
 
 void	init_texture(t_env *env)
 {
-	env->texture[0] = mlx_xpm_file_to_image(env->mlx, \
-		env->texture_path[0], &env->texture_width[0], &env->texture_height[0]);
-	env->texture[1] = mlx_xpm_file_to_image(env->mlx, \
-		env->texture_path[1], &env->texture_width[1], &env->texture_height[1]);
-	env->texture[2] = mlx_xpm_file_to_image(env->mlx, \
-		env->texture_path[2], &env->texture_width[2], &env->texture_height[2]);
-	env->texture[3] = mlx_xpm_file_to_image(env->mlx, \
-		env->texture_path[3], &env->texture_width[3], &env->texture_height[3]);
-		
+	int			i;
+
+	i = 0;
+	while (i < 4)
+	{
+		env->textures[i] = malloc(sizeof(t_texture));
+		if (!env->textures[i])
+		{
+			ft_putstr_fd("Erreur: allocation mémoire échouée pour la texture\n", 2);
+			exit(1); // Ajoutez une fonction pour libérer les ressources
+		}
+		env->textures[i]->img = mlx_xpm_file_to_image(env->mlx, \
+			env->texture_path[i], &env->textures[i]->width, &env->textures[i]->height);
+		if (!env->textures[i]->img)
+		{
+			ft_putstr_fd("Erreur: texture non chargée\n", 2);
+			exit(1); // Ajoutez une fonction pour libérer les ressources
+		}
+		env->textures[i]->data = (int *)mlx_get_data_addr(env->textures[i]->img, \
+			&env->textures[i]->bits_per_pixel, &env->textures[i]->line_length, \
+			&env->textures[i]->endian);
+		if (!env->textures[i]->data)
+		{
+			ft_putstr_fd("Erreur: données de texture non accessibles\n", 2);
+			exit(1); // Ajoutez une fonction pour libérer les ressources
+		}
+		i++;
+	}
 }

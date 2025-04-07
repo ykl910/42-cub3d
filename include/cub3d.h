@@ -47,6 +47,17 @@ typedef struct s_map
 
 }	t_map;
 
+typedef struct s_texture
+{
+	int		width;
+	int		height;
+	int		*data;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	void	*img;
+}	t_texture;
+
 typedef struct s_env
 {
 	void		*mlx;
@@ -60,12 +71,10 @@ typedef struct s_env
 	int			y;
 	int			zoom;
 	int			keys[70000];
+	char		*texture_path[6];
 	t_player	*player;
 	t_map		*map;
-	char		*texture_path[6];
-	void		*texture[4];
-	int			texture_width[4];
-	int			texture_height[4];
+	t_texture	*textures[4];
 }	t_env;
 
 typedef struct s_player
@@ -94,11 +103,15 @@ typedef struct s_player
 	int		drawStart;
 	int		drawEnd;
 	int		color;
+	double	wallX;
+	int		texX;
+	int		texY;
 } t_player;
 
 
 // init
 void	keys_init(t_env *env);
+void	init_texture(t_env *env);
 
 
 //	map parsing thomas

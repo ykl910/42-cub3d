@@ -6,7 +6,7 @@
 /*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 13:12:21 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/04 10:43:57 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/07 12:39:07 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,8 +130,16 @@ void	init_player_cam(t_player *player, t_map *map, t_env *env)
 			if (map->final_map[player->mapY][player->mapX] == '1')
 				player->hit = 1;
 		}
-		//Calculate distance of perpendicular ray (Euclidean distance would give fisheye effect!)
+		if (player->side == 0 || player->side == 1)
+			player->wallX = player->posX + player->perpWallDist * player->rayDirX;
+		else
+			player->wallX = player->posY + player->perpWallDist * player->rayDirY;
+		player->wallX -= floor(player->wallX);
+		player->texX = (int)(player->wallX * (double)env->textures[player->side]->width);
+		if (player->side == 0 || player->side == 3)
+			player->texX = env->textures[player->side]->width - player->texX - 1;
 
+		//Calculate distance of perpendicular ray (Euclidean distance would give fisheye effect!)
 		if(player->side == 0 || player->side == 1)
 			player->perpWallDist = (player->nearDistX - player->deltaDistX);
 		else
