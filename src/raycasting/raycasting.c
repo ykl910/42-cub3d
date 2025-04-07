@@ -6,7 +6,7 @@
 /*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 13:12:21 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/07 17:25:06 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/07 17:43:13 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ void	init_player_cam(t_player *player, t_map *map, t_env *env)
 			player->perpWallDist = (player->nearDistX - player->deltaDistX);
 		else
 			player->perpWallDist = (player->nearDistY - player->deltaDistY);
+
 		if (player->side == 0 || player->side == 1)
 			player->wallX = player->posY + player->perpWallDist * player->rayDirY;
 		else

@@ -1,9 +1,11 @@
-NO texture/no_bluestone.xpm
-SO texture/so_purplestone.xpm
-WE texture/eagle.xpm
-EA texture/eagle.xpm
+NO texture/lavaf1.xpm
+SO texture/gemov4.xpm
+WE texture/waterf1.xpm
+
+EA texture/bookshelf.xpm
 
 F 220,100,0
+
 C 225,30,0
 
         1111111111111111111111111

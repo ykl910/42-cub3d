@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:28:09 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/07 12:55:44 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/07 18:22:23 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,4 +100,27 @@ void	map_parsing(t_map *map, char *file_map)
 		free(line);
 	}
 	close(fd);
+}
+
+void	check_map_wall(char *line)
+{
+	int	i;
+	int	len;
+
+	len = ft_strlen(line);
+	i = 0;
+	while (line[i] != '\0' && line[i] == ' ')
+		i++;
+	if (line[i] != '1')
+	{
+		free(line);
+		ft_invalid("map invalid - no wall\n");
+	}
+	while (line[len - 2] == ' ' && len > 1)
+		len--;
+	if (line[len - 2] != '1')
+	{
+		free(line);
+		ft_invalid("map invalid - no wall\n");
+	}
 }

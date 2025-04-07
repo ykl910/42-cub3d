@@ -25,6 +25,8 @@ Si un problème de configuration de n’importe quel type est rencontré dans
 le fichier, le programme doit quitter et renvoyer "Error\n" suivi d’un message
 d’erreur explicite de votre choix
 
+lignes vides au milieu de la map
+
 //texture
 
 Votre programme doit être capable d’avoir des couleurs différentes pour le sol et
