@@ -6,7 +6,7 @@
 /*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 09:33:08 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/08 14:18:03 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/08 14:56:11 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,24 +71,5 @@ int	handle_destroy(t_env *env)
 {
 	free_ressources(env->map, env);
 	exit(0);
-	return (0);
-}
-
-int	mouse_move(int x, int y, t_env *env)
-{
-	static int	last_x;
-
-	(void) y;
-	last_x = WINDOW_WIDTH / 2;
-	if (last_x != 0)
-	{
-		if (x > last_x)
-			player_rotate_right(env->player);
-		else if (x < last_x)
-			player_rotate_left(env->player);
-	}
-	last_x = x;
-	mlx_mouse_move(env->mlx, env->win, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
-	last_x = WINDOW_WIDTH / 2;
 	return (0);
 }
