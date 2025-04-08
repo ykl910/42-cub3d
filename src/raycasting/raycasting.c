@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 13:12:21 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/08 15:47:12 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/08 16:49:57 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	init_player_dir(t_player *player, t_map *map)
 		{
 			if (map->final_map[y][x] == 'N' || map->final_map[y][x] == 'S' || map->final_map[y][x] == 'E' || map->final_map[y][x] == 'W')
 			{
-				player->posX = (double)x;
-				player->posY = (double)y;
+				player->posX = (double)x + 0.5;
+				player->posY = (double)y + 0.5;
 				if (map->final_map[y][x] == 'N')
 				{
 					player->dirX = 0;
@@ -132,15 +132,15 @@ void	init_player_cam(t_player *player, t_map *map, t_env *env)
 		//Calculate distance of perpendicular ray (Euclidean distance would give fisheye effect!
 		if (player->side == 0 || player->side == 1)
 		{
-			player->perpWallDist = (player->mapX - player->posX + 
+			player->perpWallDist = (player->mapX - player->posX +
 				(1 - player->stepX) / 2) / player->rayDirX;
 			player->wallX = player->posY + player->perpWallDist * player->rayDirY;
 		}
 		else
 		{
-			player->perpWallDist = (player->mapY - player->posY + 
+			player->perpWallDist = (player->mapY - player->posY +
 				(1 - player->stepY) / 2) / player->rayDirY;
-			player->wallX = player->posX + player->perpWallDist * player->rayDirX;	
+			player->wallX = player->posX + player->perpWallDist * player->rayDirX;
 		}
 		player->wallX -= floor(player->wallX);
 
