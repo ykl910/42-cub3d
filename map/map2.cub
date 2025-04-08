@@ -1,8 +1,8 @@
 
-NO texture/block/no_bluestone.xpm
-SO texture/block/so_purplestone.xpm
-WE texture/block/we_redbrick.xpm
-EA texture/block/ea_wood.xpm
+NO texture/block/tube_coral_block_s.xpm
+SO texture/colors_blocks/creaking_heart_dormant_s.xpm
+WE texture/colors_blocks/crimson_stem.xpm
+EA texture/block/crimson_stem_s.xpm
 
 F 220,100,0
 C 225,30,0
