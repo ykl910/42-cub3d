@@ -137,6 +137,8 @@ void	draw_pixel_to_image(t_env *env, int x, int y, int color);
 int		render_loop(t_env *env);
 int		key_press(int keycode, t_env *env);
 int		key_release(int keycode, t_env *env);
+int		mouse_move(int x, int y, t_env *env);
+
 
 // keys
 void	player_move_backward(t_player *player, t_map *map);
