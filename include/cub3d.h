@@ -150,4 +150,6 @@ void	free_ressources(t_map *map, t_env *env);
 int		handle_destroy(t_env *env);
 void	free_char_arr(char **list);
 
+
+int color_convert(char *color);
 #endif

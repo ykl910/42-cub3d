@@ -6,7 +6,7 @@
 /*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 14:35:41 by kyang             #+#    #+#             */
-/*   Updated: 2025/04/07 15:10:30 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/08 14:41:36 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,28 @@ void	parse_texture(char *line, t_env *env)
 	if (i > 2)
 		ft_invalid("Invalid texture format");
 	free_char_arr(split_line);
+}
+
+int color_convert(char *color)
+{
+	int	r;
+	int	g;
+	int	b;
+	char **temp;
+
+	temp = ft_split(color, ',');
+	if (!temp || !temp[0] || !temp[1] || !temp[2])
+	{
+		free_char_arr(temp);
+		return (0);
+	}
+	r = ft_atoi(temp[0]);
+	g = ft_atoi(temp[1]);
+	b = ft_atoi(temp[2]);
+	free_char_arr(temp);
+
+	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+		return (0);
+
+	return ((r & 0xFF) << 16) | ((g & 0xFF) << 8) | (b & 0xFF);
 }

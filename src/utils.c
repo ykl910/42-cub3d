@@ -6,7 +6,7 @@
 /*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:34:38 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/08 14:15:23 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/08 14:41:19 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,32 +100,3 @@ void	ft_btwo(void *s, size_t n)
 	}
 }
 
-char *color_convert(char *color)
-{
-	int	r;
-	int	g;
-	int	b;
-	char *hex_color;
-	char **temp;
-
-	temp = ft_split(color, ',');
-	if (!temp || !temp[0] || !temp[1] || !temp[2])
-	{
-		free_char_arr(temp);
-		return NULL;
-	}
-	r = ft_atoi(temp[0]);
-	g = ft_atoi(temp[1]);
-	b = ft_atoi(temp[2]);
-	free_char_arr(temp);
-
-	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
-		return NULL;
-
-	hex_color = malloc(7 + 1);
-	if (!hex_color)
-		return NULL;
-
-	sprintf(hex_color, "%02X%02X%02X", r, g, b);
-	return hex_color;
-}
