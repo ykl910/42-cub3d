@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 13:12:21 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/07 17:43:13 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/08 12:01:24 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,19 +126,22 @@ void	init_player_cam(t_player *player, t_map *map, t_env *env)
 				else
 					player->side = 3;
 			}
-			//Check if ray has hit a wall
 			if (map->final_map[player->mapY][player->mapX] == '1')
 				player->hit = 1;
 		}
-		if(player->side == 0 || player->side == 1)
-			player->perpWallDist = (player->nearDistX - player->deltaDistX);
-		else
-			player->perpWallDist = (player->nearDistY - player->deltaDistY);
-
+		//Calculate distance of perpendicular ray (Euclidean distance would give fisheye effect!
 		if (player->side == 0 || player->side == 1)
+		{
+			player->perpWallDist = (player->mapX - player->posX + 
+				(1 - player->stepX) / 2) / player->rayDirX;
 			player->wallX = player->posY + player->perpWallDist * player->rayDirY;
+		}
 		else
-			player->wallX = player->posX + player->perpWallDist * player->rayDirX;
+		{
+			player->perpWallDist = (player->mapY - player->posY + 
+				(1 - player->stepY) / 2) / player->rayDirY;
+			player->wallX = player->posX + player->perpWallDist * player->rayDirX;	
+		}
 		player->wallX -= floor(player->wallX);
 
 		// calcul texX
@@ -153,8 +156,6 @@ void	init_player_cam(t_player *player, t_map *map, t_env *env)
 			player->texX = 0;
 		if (player->texX >= env->textures[player->side]->width)
 			player->texX = env->textures[player->side]->width - 1;
-
-		//Calculate distance of perpendicular ray (Euclidean distance would give fisheye effect!
 
 		//Calculate height of line to draw on screen
 		player->lineHeight = (int)(WINDOW_HEIGHT / player->perpWallDist);
@@ -171,9 +172,15 @@ void	init_player_cam(t_player *player, t_map *map, t_env *env)
 
 		y = player->drawStart;
 		unsigned int color;
+		int c = 0;
+		while (c < player->drawStart)
+		{
+			draw_pixel_to_image(env, x, c, BLUE);
+			c++;
+		}
 		while (y <= player->drawEnd)
 		{
-			// player->texY = (int)texPos & (env->textures[player->side]->height - 1); // attention à la taille puissance de 2
+			//player->texY = (int)texPos & (env->textures[player->side]->height - 1); // attention à la taille puissance de 2
 			player->texY = (int)texPos;
 			if (player->texY < 0)
 				player->texY = 0;
@@ -182,13 +189,15 @@ void	init_player_cam(t_player *player, t_map *map, t_env *env)
 			texPos += step;
 			int tex_index = player->texY * (env->textures[player->side]->line_length / 4) + player->texX;
 			color = env->textures[player->side]->data[tex_index];
-			// Sombre les murs selon leur côté (facultatif, mais classique dans raycasters)
-			// if (player->side == 1 || player->side == 3)
-				// color = (color >> 1) & 0x7F7F7F;
 			draw_pixel_to_image(env, x, y, color);
 			y++;
 		}
+		int f = player->drawEnd;
+		while (f < WINDOW_HEIGHT)
+		{
+			draw_pixel_to_image(env, x, f, GREEN);
+			f++;
+		}
 		x++;
-		//printf("x = %d\n", x);
 	}
 }

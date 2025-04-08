@@ -6,7 +6,7 @@
 #    By: kyang <kyang@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/07 12:51:43 by kyang             #+#    #+#              #
-#    Updated: 2025/04/07 15:10:11 by kyang            ###   ########.fr        #
+#    Updated: 2025/04/08 14:02:07 by kyang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRCS =  ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
 		ft_putchar_fd.c  ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
 		ft_printf_c.c ft_printf_d.c ft_printf_hl.c ft_printf_hu.c ft_printf_p.c \
 		ft_printf_s.c ft_printf_u.c ft_printf.c get_next_line.c \
-		ft_hextoi.c 
+		ft_hextoi.c
 		
 
 OBJS = $(SRCS:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:11:43 by kyang             #+#    #+#             */
-/*   Updated: 2024/11/17 22:56:16 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/08 14:01:19 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdarg.h>
 # include <stdio.h>
 # include <stdint.h> 
-# include "./libft.h"
+# include "libft.h"
 
 int		ft_printf_c(va_list args);
 int		ft_printf_s(va_list args);

@@ -1,11 +1,9 @@
-NO texture/lavaf1.xpm
-SO texture/gemov4.xpm
-WE texture/waterf1.xpm
-
-EA texture/bookshelf.xpm
+NO texture/block/gold.xpm
+SO texture/block/redstone2.xpm
+WE texture/block/beehive_honey.xpm
+EA texture/block/coal.xpm
 
 F 220,100,0
-
 C 225,30,0
 
         1111111111111111111111111
