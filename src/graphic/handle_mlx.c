@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_mlx.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 09:33:08 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/08 14:56:11 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:12:22 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	key_press(int keycode, t_env *env)
 {
 	if (keycode == ESC)
 	{
-		free_ressources(env->map, env);
+		free_ressources(env);
 		exit(0);
 	}
 	if (keycode == W || keycode == A || keycode == S || keycode == D)
@@ -69,7 +69,7 @@ void	draw_pixel_to_image(t_env *env, int x, int y, int color)
 
 int	handle_destroy(t_env *env)
 {
-	free_ressources(env->map, env);
+	free_ressources(env);
 	exit(0);
 	return (0);
 }

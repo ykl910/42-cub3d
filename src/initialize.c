@@ -28,7 +28,7 @@ void	init_mlx(t_env	*env)
 	env->mlx = mlx_init();
 	if (env->mlx == NULL)
 		return ;
-	env->win = mlx_new_window(env->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "FDF");
+	env->win = mlx_new_window(env->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "CUB3D");
 	if (env->win == NULL)
 		return ;
 	env->img = mlx_new_image(env->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -45,28 +45,18 @@ void	init_texture(t_env *env)
 	i = 0;
 	while (i < 4)
 	{
-		//printf("texture path[%d]: %s\n", i, env->texture_path[i]);
 		env->textures[i] = malloc(sizeof(t_texture));
 		if (!env->textures[i])
-		{
-			ft_putstr_fd("Erreur: allocation mémoire échouée pour la texture\n", 2);
-			exit(1); // Ajoutez une fonction pour libérer les ressources
-		}
+			ft_invalid("Malloc texture failed\n", env);
 		env->textures[i]->img = mlx_xpm_file_to_image(env->mlx, \
 			env->texture_path[i], &env->textures[i]->width, &env->textures[i]->height);
 		if (!env->textures[i]->img)
-		{
-			ft_putstr_fd("Erreur: texture non chargée\n", 2);
-			exit(1); // Ajoutez une fonction pour libérer les ressources
-		}
+			ft_invalid("Texture loading failed\n", env);
 		env->textures[i]->data = (int *)mlx_get_data_addr(env->textures[i]->img, \
 			&env->textures[i]->bits_per_pixel, &env->textures[i]->line_length, \
 			&env->textures[i]->endian);
 		if (!env->textures[i]->data)
-		{
-			ft_putstr_fd("Erreur: données de texture non accessibles\n", 2);
-			exit(1); // Ajoutez une fonction pour libérer les ressources
-		}
+			ft_invalid("Texture data loading failed\n", env);
 		i++;
 	}
 }

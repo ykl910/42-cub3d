@@ -6,7 +6,7 @@
 /*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 14:35:41 by kyang             #+#    #+#             */
-/*   Updated: 2025/04/08 14:41:36 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/08 15:11:43 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	parse_texture(char *line, t_env *env)
 
 	split_line = ft_split(line, ' ');
 	if (!split_line)
-		ft_invalid("Memory allocation failed");
+		ft_invalid("Memory allocation failed", env);
 	i = 0;
 	while (split_line[i])
 	{
@@ -38,7 +38,7 @@ void	parse_texture(char *line, t_env *env)
         i++;
 	}
 	if (i > 2)
-		ft_invalid("Invalid texture format");
+		ft_invalid("Invalid texture format", env);
 	free_char_arr(split_line);
 }
 
@@ -62,6 +62,5 @@ int color_convert(char *color)
 
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
 		return (0);
-
 	return ((r & 0xFF) << 16) | ((g & 0xFF) << 8) | (b & 0xFF);
 }

@@ -117,7 +117,7 @@ void	init_texture(t_env *env);
 void	*ft_calloc_two(size_t count, size_t size);
 void	ft_btwo(void *s, size_t n);
 void	print_map(t_map *map);
-void	check_map_wall(char *line);
+void	check_map_wall(char *line, t_env *env);
 
 
 // parsing
@@ -125,8 +125,8 @@ void	parse_texture(char *line, t_env *env);
 
 void	map_init(t_map *map, t_env *env);	
 void	map_delimit(t_map *map, char *file_map, t_env *env);
-int		ft_invalid(char *error_message);
-void	map_parsing(t_map *map, char *file_map);
+int		ft_invalid(char *error_message, t_env *env);
+void	map_parsing(t_env *env, char *file_map);
 
 void	init_player_dir(t_player *player, t_map *map);
 void	init_player_cam(t_player *player, t_map *map, t_env *env);
@@ -148,7 +148,7 @@ void	player_move_right(t_player *player, t_map *map);
 void	player_rotate_right(t_player *player);
 void	player_rotate_left(t_player *player);
 
-void	free_ressources(t_map *map, t_env *env);
+void	free_ressources(t_env *env);
 int		handle_destroy(t_env *env);
 void	free_char_arr(char **list);
 

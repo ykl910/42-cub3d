@@ -6,30 +6,32 @@
 /*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:34:38 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/08 14:41:19 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/08 15:20:29 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	ft_invalid(char *error_message)
+int	ft_invalid(char *error_message, t_env *env)
 {
 	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(error_message, 2);
+	free_ressources(env);
 	exit(1);
 }
 
-void	free_ressources(t_map *map, t_env *env)
+void	free_ressources(t_env *env)
 {
 	int	i;
 
 	i = 0;
-	while (i < map->h_max)
+	while (i < env->map->h_max)
 	{
-		free(map->final_map[i]);
+		free(env->map->final_map[i]);
 		i++;
 	}
-	free(map->final_map);
+	if (env->map->final_map)
+		free(env->map->final_map);
 	i = 0;
 	while (i < 6)
 	{
