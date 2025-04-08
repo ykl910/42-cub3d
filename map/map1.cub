@@ -1,9 +1,9 @@
 NO texture/block/gold.xpm
 SO texture/block/redstone2.xpm
 WE texture/block/beehive_honey.xpm
-EA texture/block/coal.xpm
+EA texture/block/beehive_honey_64x64.xpm
 
-F 101,67,330000000000000
+F 101,67,3300
 C 128,128,128
 
         1111111111111111111111111
