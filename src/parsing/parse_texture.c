@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 14:35:41 by kyang             #+#    #+#             */
-/*   Updated: 2025/04/08 15:11:43 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/08 16:34:57 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void	parse_texture(char *line, t_env *env)
 	while (split_line[i])
 	{
         if (ft_strncmp(split_line[i], "NO", 2) == 0)
-            env->texture_path[0] = ft_strndup(split_line[i + 1], ft_strlen(split_line[i + 1]) - 1);
-        else if (ft_strncmp(split_line[i], "SO", 2) == 0)
-            env->texture_path[1] = ft_strndup(split_line[i + 1], ft_strlen(split_line[i + 1]) - 1);
-        else if (ft_strncmp(split_line[i], "WE", 2) == 0)
-            env->texture_path[2] = ft_strndup(split_line[i + 1], ft_strlen(split_line[i + 1]) - 1);
-        else if (ft_strncmp(split_line[i], "EA", 2) == 0)
             env->texture_path[3] = ft_strndup(split_line[i + 1], ft_strlen(split_line[i + 1]) - 1);
+        else if (ft_strncmp(split_line[i], "SO", 2) == 0)
+            env->texture_path[2] = ft_strndup(split_line[i + 1], ft_strlen(split_line[i + 1]) - 1);
+        else if (ft_strncmp(split_line[i], "WE", 2) == 0)
+            env->texture_path[1] = ft_strndup(split_line[i + 1], ft_strlen(split_line[i + 1]) - 1);
+        else if (ft_strncmp(split_line[i], "EA", 2) == 0)
+            env->texture_path[0] = ft_strndup(split_line[i + 1], ft_strlen(split_line[i + 1]) - 1);
         else if (ft_strncmp(split_line[i], "F", 1) == 0)
             env->texture_path[4] = ft_strndup(split_line[i + 1], ft_strlen(split_line[i + 1]) - 1);
         else if (ft_strncmp(split_line[i], "C", 1) == 0)
