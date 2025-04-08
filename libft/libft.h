@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:32:59 by kyang             #+#    #+#             */
-/*   Updated: 2025/04/08 14:05:37 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/08 14:24:30 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdarg.h>
-# include <stdint.h> 
+# include <stdint.h>
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -89,6 +89,7 @@ int		ft_printf_u(va_list args);
 int		ft_printf_hl(va_list args);
 int		ft_printf_hu(va_list args);
 
+void	ft_putchar(char c);
 void	ft_putstr(char *s);
 void	ft_putp(unsigned long int nb);
 void	ft_putnbr(int nb);
