@@ -66,11 +66,10 @@ typedef struct s_env
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
-	int			x;
-	int			y;
-	int			zoom;
 	int			keys[70000];
 	char		*texture_path[6];
+	int			ceiling_color;
+	int			floor_color;
 	t_player	*player;
 	t_map		*map;
 	t_texture	*textures[4];

@@ -6,7 +6,7 @@
 /*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 13:12:21 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/08 14:40:59 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/08 15:47:12 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,9 +173,10 @@ void	init_player_cam(t_player *player, t_map *map, t_env *env)
 		y = player->drawStart;
 		unsigned int color;
 		int c = 0;
+
 		while (c < player->drawStart)
 		{
-			draw_pixel_to_image(env, x, c, color_convert(env->texture_path[5]));
+			draw_pixel_to_image(env, x, c, env->ceiling_color);
 			c++;
 		}
 		while (y <= player->drawEnd)
@@ -195,7 +196,7 @@ void	init_player_cam(t_player *player, t_map *map, t_env *env)
 		int f = player->drawEnd;
 		while (f < WINDOW_HEIGHT)
 		{
-			draw_pixel_to_image(env, x, f, color_convert(env->texture_path[4]));
+			draw_pixel_to_image(env, x, f, env->floor_color);
 			f++;
 		}
 		x++;

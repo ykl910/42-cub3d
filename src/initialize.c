@@ -59,4 +59,6 @@ void	init_texture(t_env *env)
 			ft_invalid("Texture data loading failed\n", env);
 		i++;
 	}
+	env->ceiling_color = color_convert(env->texture_path[5]);
+	env->floor_color = color_convert(env->texture_path[4]);
 }
