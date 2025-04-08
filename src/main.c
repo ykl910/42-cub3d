@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 14:11:40 by kyang             #+#    #+#             */
-/*   Updated: 2025/04/07 14:39:49 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/08 14:15:10 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(env.mlx, render_loop, &env);
 	mlx_hook(env.win, 17, 0, handle_destroy, &env);
 	mlx_loop(env.mlx);
+	
 	return (0);
 }
 

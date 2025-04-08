@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:34:38 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/07 18:21:58 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/08 14:15:23 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_invalid(char *error_message)
 {
 	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(error_message, 2);
-	exit (1);
+	exit(1);
 }
 
 void	free_ressources(t_map *map, t_env *env)
@@ -98,4 +98,34 @@ void	ft_btwo(void *s, size_t n)
 		p[i] = '2';
 		i++;
 	}
+}
+
+char *color_convert(char *color)
+{
+	int	r;
+	int	g;
+	int	b;
+	char *hex_color;
+	char **temp;
+
+	temp = ft_split(color, ',');
+	if (!temp || !temp[0] || !temp[1] || !temp[2])
+	{
+		free_char_arr(temp);
+		return NULL;
+	}
+	r = ft_atoi(temp[0]);
+	g = ft_atoi(temp[1]);
+	b = ft_atoi(temp[2]);
+	free_char_arr(temp);
+
+	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+		return NULL;
+
+	hex_color = malloc(7 + 1);
+	if (!hex_color)
+		return NULL;
+
+	sprintf(hex_color, "%02X%02X%02X", r, g, b);
+	return hex_color;
 }
