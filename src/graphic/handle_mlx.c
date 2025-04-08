@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_mlx.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 09:33:08 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/08 11:35:47 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/08 14:56:11 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	render_loop(t_env *env)
 	return (0);
 }
 
-int key_press(int keycode, t_env *env)
+int	key_press(int keycode, t_env *env)
 {
 	if (keycode == ESC)
 	{
@@ -49,7 +49,7 @@ int key_press(int keycode, t_env *env)
 	return (0);
 }
 
-int key_release(int keycode, t_env *env)
+int	key_release(int keycode, t_env *env)
 {
 	if (keycode >= 0 && keycode < 70000)
 		env->keys[keycode] = 0;
