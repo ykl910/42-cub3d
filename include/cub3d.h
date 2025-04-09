@@ -122,47 +122,46 @@ void	ft_btwo(void *s, size_t n);
 void	print_map(t_map *map);
 void	check_map_wall(char *line, t_env *env);
 
-
 // parsing
 void	parse_texture(char *line, t_env *env);
-void	parse_bonus_texture(char *line, t_env *env);
-
+int 	color_convert(char *color, t_env *env);
 void	map_init(t_map *map, t_env *env, char *file_map);
 void	map_delimit(t_map *map, char *file_map, t_env *env);
-int		ft_invalid(char *error_message, t_env *env);
 void	map_parsing(t_env *env, char *file_map);
 
+// raycasting
 void	init_player_dir(t_player *player, t_map *map);
 void	init_player_cam(t_player *player, t_map *map, t_env *env);
-
 void	init_mlx(t_env	*env);
 void	draw_pixel_to_image(t_env *env, int x, int y, int color);
-int		render_loop(t_env *env);
-int		key_press(int keycode, t_env *env);
-int		key_release(int keycode, t_env *env);
-int		mouse_move(int x, int y, t_env *env);
 
-//minimap
+// minimap
 void	draw_minimap(t_env *env);
 void	draw_player_on_minimap(t_env *env);
-
-// keys
-void	player_move_backward(t_player *player, t_map *map);
-void	player_move_forward(t_player *player, t_map *map);
-void	player_move_left(t_player *player, t_map *map);
-void	player_move_right(t_player *player, t_map *map);
-
-void	player_rotate_right(t_player *player);
-void	player_rotate_left(t_player *player);
-
-void	free_ressources(t_env *env);
-int		handle_destroy(t_env *env);
-void	free_char_arr(char **list);
-
-int 	color_convert(char *color);
 
 // door
 void	open_door(t_env *env);
 void	close_door(t_env *env);
+
+// mlx events
+int		render_loop(t_env *env);
+int		key_press(int keycode, t_env *env);
+int		key_release(int keycode, t_env *env);
+int		mouse_move(int x, int y, t_env *env);
+void	player_move_backward(t_player *player, t_map *map);
+void	player_move_forward(t_player *player, t_map *map);
+void	player_move_left(t_player *player, t_map *map);
+void	player_move_right(t_player *player, t_map *map);
+void	player_rotate_right(t_player *player);
+void	player_rotate_left(t_player *player);
+
+// utils
+void	free_ressources(t_env *env);
+int		handle_destroy(t_env *env);
+void	free_char_arr(char **list);
+int		ft_invalid(char *error_message, t_env *env);
+
+
+
 
 #endif

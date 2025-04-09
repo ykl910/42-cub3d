@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 12:32:31 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/08 14:56:16 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/09 15:25:05 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,45 +14,47 @@
 
 void	player_rotate_left(t_player *player)
 {
-	double	moveSpeed;
-	double oldDirX;
-	double oldPlaneX;
+	double	move_s;
+	double	old_dirx;
+	double	old_planex;
 
-	moveSpeed = 0.02;
-	oldDirX = player->dirX;
-	player->dirX = player->dirX * cos(-moveSpeed) - player->dirY * sin(-moveSpeed);
-	player->dirY = oldDirX * sin(-moveSpeed) + player->dirY * cos(-moveSpeed);
-	oldPlaneX = player->planeX;
-	player->planeX = player->planeX * cos(-moveSpeed) - player->planeY * sin(-moveSpeed);
-	player->planeY = oldPlaneX * sin(-moveSpeed) + player->planeY * cos(-moveSpeed);
+	move_s = 0.02;
+	old_dirx = player->dirX;
+	player->dirX = player->dirX * cos(-move_s) - player->dirY * sin(-move_s);
+	player->dirY = old_dirx * sin(-move_s) + player->dirY * cos(-move_s);
+	old_planex = player->planeX;
+	player->planeX = player->planeX * cos(-move_s) - \
+	player->planeY * sin(-move_s);
+	player->planeY = old_planex * sin(-move_s) + player->planeY * cos(-move_s);
 }
 
 void	player_rotate_right(t_player *player)
 {
-	double	moveSpeed;
-	double oldDirX;
-	double oldPlaneX;
+	double	move_s;
+	double	old_dirx;
+	double	old_planex;
 
-	moveSpeed = 0.02;
-	oldDirX = player->dirX;
-	player->dirX = player->dirX * cos(moveSpeed) - player->dirY * sin(moveSpeed);
-	player->dirY = oldDirX * sin(moveSpeed) + player->dirY * cos(moveSpeed);
-	oldPlaneX = player->planeX;
-	player->planeX = player->planeX * cos(moveSpeed) - player->planeY * sin(moveSpeed);
-	player->planeY = oldPlaneX * sin(moveSpeed) + player->planeY * cos(moveSpeed);
+	move_s = 0.02;
+	old_dirx = player->dirX;
+	player->dirX = player->dirX * cos(move_s) - player->dirY * sin(move_s);
+	player->dirY = old_dirx * sin(move_s) + player->dirY * cos(move_s);
+	old_planex = player->planeX;
+	player->planeX = player->planeX * cos(move_s) - \
+	player->planeY * sin(move_s);
+	player->planeY = old_planex * sin(move_s) + player->planeY * cos(move_s);
 }
 
 static void	player_rotate(t_player *player, double angle)
 {
-	double oldDirX;
-	double oldPlaneX;
+	double	old_dirx;
+	double	old_planex;
 
-	oldDirX = player->dirX;
-	oldPlaneX = player->planeX;
+	old_dirx = player->dirX;
+	old_planex = player->planeX;
 	player->dirX = player->dirX * cos(angle) - player->dirY * sin(angle);
-	player->dirY = oldDirX * sin(angle) + player->dirY * cos(angle);
+	player->dirY = old_dirx * sin(angle) + player->dirY * cos(angle);
 	player->planeX = player->planeX * cos(angle) - player->planeY * sin(angle);
-	player->planeY = oldPlaneX * sin(angle) + player->planeY * cos(angle);
+	player->planeY = old_planex * sin(angle) + player->planeY * cos(angle);
 }
 
 int	mouse_move(int x, int y, t_env *env)

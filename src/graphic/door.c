@@ -6,7 +6,7 @@
 /*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 13:54:26 by kyang             #+#    #+#             */
-/*   Updated: 2025/04/09 14:35:30 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/09 15:02:17 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	open_door(t_env *env)
 {
-	int x;
-	int y;
-	
+	int	x;
+	int	y;
+
 	x = (int)env->player->posX;
 	y = (int)env->player->posY;
 	if (env->map->final_map[y][x] == 'C')
@@ -33,9 +33,9 @@ void	open_door(t_env *env)
 
 void	close_door(t_env *env)
 {
-	int x;
-	int y;
-	
+	int	x;
+	int	y;
+
 	x = (int)env->player->posX;
 	y = (int)env->player->posY;
 	if (env->map->final_map[y + 1][x] == 'O')

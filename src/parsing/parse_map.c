@@ -6,7 +6,7 @@
 /*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:28:09 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/09 13:42:12 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/09 15:11:19 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,7 @@ void	map_delimit(t_map *map, char *file_map, t_env *env)
 		}
 		else
 		{
-			if (env->c == 5)
-				parse_texture(line, env);
-			else
-				parse_bonus_texture(line, env);
+			parse_texture(line, env);
 			map->map_start++;
 		}
 		free(line);
@@ -102,13 +99,13 @@ void	check_map_wall(char *line, t_env *env)
 	if (line[i] != '1')
 	{
 		free(line);
-		ft_invalid("map invalid - no wall\n", env);
+		ft_invalid("Map invalid - no wall\n", env);
 	}
 	while (line[len - 2] == ' ' && len > 1)
 		len--;
 	if (line[len - 2] != '1')
 	{
 		free(line);
-		ft_invalid("map invalid - no wall\n", env);
+		ft_invalid("Map invalid - no wall\n", env);
 	}
 }

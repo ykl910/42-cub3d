@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbellest <tbellest@student->42->fr>          +#+  +:+       +#+        */
+/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 12:55:05 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/04 12:56:10 by tbellest         ###   ########->fr       */
+/*   Updated: 2025/04/09 15:15:53 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,16 +78,18 @@ void	init_texture(t_env *env)
 		if (!env->textures[i])
 			ft_invalid("Malloc texture failed\n", env);
 		env->textures[i]->img = mlx_xpm_file_to_image(env->mlx, \
-			env->texture_path[i], &env->textures[i]->width, &env->textures[i]->height);
+			env->texture_path[i], &env->textures[i]->width, \
+			&env->textures[i]->height);
 		if (!env->textures[i]->img)
 			ft_invalid("Texture loading failed\n", env);
-		env->textures[i]->data = (int *)mlx_get_data_addr(env->textures[i]->img, \
+		env->textures[i]->data = \
+			(int *)mlx_get_data_addr(env->textures[i]->img, \
 			&env->textures[i]->bits_per_pixel, &env->textures[i]->line_length, \
 			&env->textures[i]->endian);
 		if (!env->textures[i]->data)
 			ft_invalid("Texture data loading failed\n", env);
 		i++;
 	}
-	env->ceiling_color = color_convert(env->texture_path[env->c]);
-	env->floor_color = color_convert(env->texture_path[env->c - 1]);
+	env->ceiling_color = color_convert(env->texture_path[env->c], env);
+	env->floor_color = color_convert(env->texture_path[env->c - 1], env);
 }

@@ -6,7 +6,7 @@
 /*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 09:33:02 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/09 14:36:46 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/09 15:25:40 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	draw_square(t_env *env, int x, int y, int color)
 	int	j;
 
 	j = 0;
-	while(j < MINIMAP_SCALE)
+	while (j < MINIMAP_SCALE)
 	{
 		i = 0;
-		while(i < MINIMAP_SCALE)
+		while (i < MINIMAP_SCALE)
 		{
 			draw_pixel_to_image(env, x + i, y + j, color);
 			i++;
@@ -58,6 +58,5 @@ void	draw_player_on_minimap(t_env *env)
 
 	px = (env->player->posX + 5) * MINIMAP_SCALE;
 	py = (env->player->posY + 5) * MINIMAP_SCALE;
-
 	draw_square(env, px - 1, py - 1, 0xFF0000);
 }
