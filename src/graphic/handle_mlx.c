@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_mlx.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 09:33:08 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/08 15:12:22 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/09 10:21:25 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	render_loop(t_env *env)
 	env->addr = mlx_get_data_addr(env->img, &env->bits_per_pixel, \
 		&env->line_length, &env->endian);
 	init_player_cam(env->player, env->map, env);
+	draw_minimap(env);
+	draw_player_on_minimap(env);
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 	return (0);
 }

@@ -122,7 +122,7 @@ void	check_map_wall(char *line, t_env *env);
 // parsing
 void	parse_texture(char *line, t_env *env);
 
-void	map_init(t_map *map, t_env *env);	
+void	map_init(t_map *map, t_env *env);
 void	map_delimit(t_map *map, char *file_map, t_env *env);
 int		ft_invalid(char *error_message, t_env *env);
 void	map_parsing(t_env *env, char *file_map);
@@ -137,6 +137,9 @@ int		key_press(int keycode, t_env *env);
 int		key_release(int keycode, t_env *env);
 int		mouse_move(int x, int y, t_env *env);
 
+//minimap
+void	draw_minimap(t_env *env);
+void	draw_player_on_minimap(t_env *env);
 
 // keys
 void	player_move_backward(t_player *player, t_map *map);
@@ -153,4 +156,5 @@ void	free_char_arr(char **list);
 
 
 int color_convert(char *color);
+
 #endif

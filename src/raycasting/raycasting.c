@@ -6,7 +6,7 @@
 /*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 13:12:21 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/08 16:49:57 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/09 10:52:02 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,20 @@ void	init_player_dir(t_player *player, t_map *map)
 				if (map->final_map[y][x] == 'N')
 				{
 					player->dirX = 0;
-					player->dirY = -1;
+					player->dirY = -1.00001;
 					player->planeX = 0.66;
 					player->planeY = 0;
 				}
 				else if (map->final_map[y][x] == 'S')
 				{
 					player->dirX = 0;
-					player->dirY = 1;
+					player->dirY = 1.00001;
 					player->planeX = -0.66;
 					player->planeY = 0;
 				}
 				else if (map->final_map[y][x] == 'E')
 				{
-					player->dirX = 1;
+					player->dirX = 1.00001;
 					player->dirY = 0;
 					player->planeX = 0;
 					player->planeY = 0.66;
@@ -51,7 +51,7 @@ void	init_player_dir(t_player *player, t_map *map)
 				}
 				else if (map->final_map[y][x] == 'W')
 				{
-					player->dirX = -1;
+					player->dirX = -1.00001;
 					player->dirY = 0;
 					player->planeX = 0;
 					player->planeY = -0.66;
