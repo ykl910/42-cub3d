@@ -46,9 +46,10 @@ void	keys_init(t_env *env)
 	env->keys[W] = 0;
 	env->keys[S] = 0;
 	env->keys[D] = 0;
+	env->keys[SPACE] = 0;
 	env->keys[LEFT] = 0;
 	env->keys[RIGHT] = 0;
-
+	env->door_opened = 0;
 }
 
 void	init_mlx(t_env	*env)

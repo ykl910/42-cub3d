@@ -15,10 +15,12 @@
 # define D 100
 # define S 115
 # define W 119
+# define SPACE 32
 # define LEFT 65361
 # define RIGHT 65363
 # define UP 65362
 # define DOWN 65364
+# define MINIMAP_SCALE 5
 
 # include <stdbool.h>
 # include <stdlib.h>
@@ -72,6 +74,7 @@ typedef struct s_env
 	int			floor_color;
 	int			bonus;
 	int			c;
+	int			door_opened;
 	t_player	*player;
 	t_map		*map;
 	t_texture	*textures[6];
@@ -112,7 +115,6 @@ typedef struct s_player
 // init
 void	keys_init(t_env *env);
 void	init_texture(t_env *env);
-
 
 //	map parsing thomas
 void	*ft_calloc_two(size_t count, size_t size);
@@ -157,7 +159,10 @@ void	free_ressources(t_env *env);
 int		handle_destroy(t_env *env);
 void	free_char_arr(char **list);
 
+int 	color_convert(char *color);
 
-int color_convert(char *color);
+// door
+void	open_door(t_env *env);
+void	close_door(t_env *env);
 
 #endif

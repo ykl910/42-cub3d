@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 09:33:02 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/09 10:35:59 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/09 14:36:46 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-#define MINIMAP_SCALE 5
 
 void	draw_square(t_env *env, int x, int y, int color)
 {

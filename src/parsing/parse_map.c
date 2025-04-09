@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:28:09 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/09 12:35:03 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/09 13:42:12 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ void	map_parsing(t_env *env, char *file_map)
 		while (line[++map->x] != '\n')
 		{
 			if (line[map->x] != 'N' && line[map->x] != 'S' && line[map->x] != 'E' &&
-				line[map->x] != 'W' && line[map->x] != '0' && line[map->x] != '1' && line[map->x] != ' ')
+				line[map->x] != 'W' && line[map->x] != '0' && line[map->x] != '1' && 
+				line[map->x] != ' ' && line[map->x] != 'C')
 				ft_invalid("Invalid character in map\n", env);
 
 			if (line[map->x] == ' ')

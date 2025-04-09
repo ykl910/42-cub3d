@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 13:12:21 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/09 10:52:02 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/09 13:48:01 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,11 +126,21 @@ void	init_player_cam(t_player *player, t_map *map, t_env *env)
 				else
 					player->side = 3;
 			}
-			if (map->final_map[player->mapY][player->mapX] == '1')
+			if (map->final_map[player->mapY][player->mapX] == '1' || map->final_map[player->mapY][player->mapX] == 'C')
+			{
 				player->hit = 1;
+				if (map->final_map[player->mapY][player->mapX] == 'C' && (player->side == 0 || player->side == 1))
+				{
+					player->side = 4;
+				}
+				else if (map->final_map[player->mapY][player->mapX] == 'C' && (player->side == 2 || player->side == 3))
+				{
+					player->side = 5;
+				}
+			}
 		}
 		//Calculate distance of perpendicular ray (Euclidean distance would give fisheye effect!
-		if (player->side == 0 || player->side == 1)
+		if (player->side == 0 || player->side == 1 || player->side == 4)
 		{
 			player->perpWallDist = (player->mapX - player->posX +
 				(1 - player->stepX) / 2) / player->rayDirX;

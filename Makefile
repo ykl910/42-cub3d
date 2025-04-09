@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+         #
+#    By: kyang <kyang@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/31 16:25:43 by kyang             #+#    #+#              #
-#    Updated: 2025/04/09 09:39:22 by tbellest         ###   ########.fr        #
+#    Updated: 2025/04/09 13:58:55 by kyang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRC_UTILS = utils.c
 SRC_PARSING = parsing/parse_map.c parsing/parse_texture.c
 SRC_RAYCASTING = raycasting/raycasting.c
 SRC_GRAPHIC = graphic/handle_mlx.c graphic/move_player.c graphic/rotate_player.c \
-				graphic/mini_map.c
+				graphic/mini_map.c graphic/door.c
 SRC_INITIALIZE = initialize.c
 SRC = $(SRC_MAIN) $(SRC_UTILS) $(SRC_PARSING) $(SRC_RAYCASTING) $(SRC_GRAPHIC) $(SRC_INITIALIZE)
 SRCS = $(addprefix $(SRCDIR)/, $(SRC))
