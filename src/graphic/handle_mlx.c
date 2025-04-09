@@ -6,7 +6,7 @@
 /*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 09:33:08 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/09 14:30:07 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/09 17:06:35 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	render_loop(t_env *env)
 	env->img = mlx_new_image(env->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	env->addr = mlx_get_data_addr(env->img, &env->bits_per_pixel, \
 		&env->line_length, &env->endian);
-	init_player_cam(env->player, env->map, env);
+	raycasting(env->player, env->map, env);
 	draw_minimap(env);
 	draw_player_on_minimap(env);
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);

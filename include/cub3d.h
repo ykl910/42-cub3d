@@ -109,6 +109,8 @@ typedef struct s_player
 	double	wallX;
 	int		texX;
 	int		texY;
+	double	step;
+	double	texPos;
 } t_player;
 
 
@@ -132,6 +134,16 @@ void	map_parsing(t_env *env, char *file_map);
 // raycasting
 void	init_player_dir(t_player *player, t_map *map);
 void	init_player_cam(t_player *player, t_map *map, t_env *env);
+void	calculate_distance(t_player *player);
+void	dda(t_player *player);
+void	add_door_side(t_player *player, t_map *map);
+void	calculate_tex_x(t_player *player, t_env *env);
+int		calculate_line(t_player *player, t_env *env);
+
+void	draw_line(t_player *player, t_env *env, int x, int y);
+void	draw_ceiling_floor(t_env *env, t_player *player, int x);
+void	raycasting(t_player *player, t_map *map, t_env *env);
+
 void	init_mlx(t_env	*env);
 void	draw_pixel_to_image(t_env *env, int x, int y, int color);
 
