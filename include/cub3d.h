@@ -67,12 +67,13 @@ typedef struct s_env
 	int			line_length;
 	int			endian;
 	int			keys[70000];
-	char		*texture_path[6];
+	char		*texture_path[8];
 	int			ceiling_color;
 	int			floor_color;
+	int			bonus;
 	t_player	*player;
 	t_map		*map;
-	t_texture	*textures[4];
+	t_texture	*textures[6];
 }	t_env;
 
 typedef struct s_player
@@ -121,8 +122,9 @@ void	check_map_wall(char *line, t_env *env);
 
 // parsing
 void	parse_texture(char *line, t_env *env);
+void	parse_bonus_texture(char *line, t_env *env);
 
-void	map_init(t_map *map, t_env *env);
+void	map_init(t_map *map, t_env *env, char *file_map);
 void	map_delimit(t_map *map, char *file_map, t_env *env);
 int		ft_invalid(char *error_message, t_env *env);
 void	map_parsing(t_env *env, char *file_map);

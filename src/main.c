@@ -6,7 +6,7 @@
 /*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 14:11:40 by kyang             #+#    #+#             */
-/*   Updated: 2025/04/08 15:34:33 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/09 11:53:08 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,19 @@ int	main(int argc, char **argv)
 	keys_init(&env);
 	env.map = &map;
 	env.player = &player;
-	map_init(&map, &env);
+	map_init(&map, &env, argv[1]);
 	map_delimit(&map, argv[1], &env);
 	map_parsing(&env, argv[1]);
 	// print_map(&map);
 	init_player_dir(&player, &map);
 	init_mlx(&env);
 	init_texture(&env);
+	printf("%d\n", env.bonus);
+	for (int i = 0; i < 6; i++)
+	{
+		if (env.texture_path[i])
+			printf("%s\n",env.texture_path[i]);
+	}
 	mlx_hook(env.win, KeyPress, KeyPressMask, key_press, &env);
 	mlx_hook(env.win, KeyRelease, KeyReleaseMask, key_release, &env);
 	mlx_hook(env.win, MotionNotify, PointerMotionMask, mouse_move, &env);

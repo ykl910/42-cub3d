@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 14:35:41 by kyang             #+#    #+#             */
-/*   Updated: 2025/04/08 16:34:57 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/09 11:52:34 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,44 @@ void	parse_texture(char *line, t_env *env)
             env->texture_path[1] = ft_strndup(split_line[i + 1], ft_strlen(split_line[i + 1]) - 1);
         else if (ft_strncmp(split_line[i], "EA", 2) == 0)
             env->texture_path[0] = ft_strndup(split_line[i + 1], ft_strlen(split_line[i + 1]) - 1);
-        else if (ft_strncmp(split_line[i], "F", 1) == 0)
+		else if (ft_strncmp(split_line[i], "F", 1) == 0)
             env->texture_path[4] = ft_strndup(split_line[i + 1], ft_strlen(split_line[i + 1]) - 1);
         else if (ft_strncmp(split_line[i], "C", 1) == 0)
             env->texture_path[5] = ft_strndup(split_line[i + 1], ft_strlen(split_line[i + 1]) - 1);
+        i++;
+	}
+	if (i > 2)
+		ft_invalid("Invalid texture format", env);
+	free_char_arr(split_line);
+}
+
+void	parse_bonus_texture(char *line, t_env *env)
+{
+	char	**split_line;
+	int		i;
+
+	split_line = ft_split(line, ' ');
+	if (!split_line)
+		ft_invalid("Memory allocation failed", env);
+	i = 0;
+	while (split_line[i])
+	{
+        if (ft_strncmp(split_line[i], "NO", 2) == 0)
+            env->texture_path[3] = ft_strndup(split_line[i + 1], ft_strlen(split_line[i + 1]) - 1);
+        else if (ft_strncmp(split_line[i], "SO", 2) == 0)
+            env->texture_path[2] = ft_strndup(split_line[i + 1], ft_strlen(split_line[i + 1]) - 1);
+        else if (ft_strncmp(split_line[i], "WE", 2) == 0)
+            env->texture_path[1] = ft_strndup(split_line[i + 1], ft_strlen(split_line[i + 1]) - 1);
+        else if (ft_strncmp(split_line[i], "EA", 2) == 0)
+            env->texture_path[0] = ft_strndup(split_line[i + 1], ft_strlen(split_line[i + 1]) - 1);
+		else if (ft_strncmp(split_line[i], "DON", 3) == 0)
+            env->texture_path[4] = ft_strndup(split_line[i + 1], ft_strlen(split_line[i + 1]) - 1);
+        else if (ft_strncmp(split_line[i], "DOE", 3) == 0)
+            env->texture_path[5] = ft_strndup(split_line[i + 1], ft_strlen(split_line[i + 1]) - 1);
+		else if (ft_strncmp(split_line[i], "F", 1) == 0)
+            env->texture_path[6] = ft_strndup(split_line[i + 1], ft_strlen(split_line[i + 1]) - 1);
+        else if (ft_strncmp(split_line[i], "C", 1) == 0)
+            env->texture_path[7] = ft_strndup(split_line[i + 1], ft_strlen(split_line[i + 1]) - 1);
         i++;
 	}
 	if (i > 2)
