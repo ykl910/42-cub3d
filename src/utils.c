@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:34:38 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/08 15:20:29 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/09 12:35:30 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	free_ressources(t_env *env)
 	if (env->map->final_map)
 		free(env->map->final_map);
 	i = 0;
-	while (i < 6)
+	while (i < 8)
 	{
 		if (env->texture_path[i])
 			free(env->texture_path[i]);

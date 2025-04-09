@@ -71,6 +71,7 @@ typedef struct s_env
 	int			ceiling_color;
 	int			floor_color;
 	int			bonus;
+	int			c;
 	t_player	*player;
 	t_map		*map;
 	t_texture	*textures[6];

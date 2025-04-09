@@ -17,22 +17,28 @@ void	map_init(t_map *map, t_env *env, char *file_map)
 	int	i;
 
 	i = 0;
+	if (ft_strnstr(file_map, "bonus", ft_strlen(file_map)))
+	{
+		env->bonus = 1;
+		env->c = 7;
+	}
+	else
+	{
+		env->bonus = 0;
+		env->c = 5;
+	}
 	map->x = 0;
 	map->y = 0;
 	map->h_max = 0;
 	map->w_max = 0;
 	map->map_start = 0;
 	map->final_map = NULL;
-	while (i < 6)
+	while (i < 8)
 	{
 		env->texture_path[i] = NULL;
 		i++;
 	}
-	if (ft_strnstr(file_map, "bonus", ft_strlen(file_map)))
-		env->bonus = 1;
-	else
-		env->bonus = 0;
-	}
+}
 
 void	keys_init(t_env *env)
 {
@@ -63,14 +69,9 @@ void	init_mlx(t_env	*env)
 void	init_texture(t_env *env)
 {
 	int			i;
-	int			c;
 
 	i = 0;
-	if (!env->bonus)
-		c = 4;
-	else
-		c = 6;
-	while (i < c)
+	while (i < env->c - 1)
 	{
 		env->textures[i] = malloc(sizeof(t_texture));
 		if (!env->textures[i])
@@ -86,6 +87,6 @@ void	init_texture(t_env *env)
 			ft_invalid("Texture data loading failed\n", env);
 		i++;
 	}
-	env->ceiling_color = color_convert(env->texture_path[c + 1]);
-	env->floor_color = color_convert(env->texture_path[c]);
+	env->ceiling_color = color_convert(env->texture_path[env->c]);
+	env->floor_color = color_convert(env->texture_path[env->c - 1]);
 }

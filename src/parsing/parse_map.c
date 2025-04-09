@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:28:09 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/09 11:50:14 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/09 12:35:03 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	map_delimit(t_map *map, char *file_map, t_env *env)
 	int		fd;
 	char	*line;
 	int		i;
-	int		c;
 
 	fd = open(file_map, O_RDONLY);
 	if (fd < 0)
@@ -26,11 +25,7 @@ void	map_delimit(t_map *map, char *file_map, t_env *env)
 	while (line)
 	{
 		i = 0;
-		if (!env->bonus)
-			c = 5;
-		else
-			c = 7;
-		if (env->texture_path[c] && line[0] != '\n')
+		if (env->texture_path[env->c] && line[0] != '\n')
 		{
 			check_map_wall(line, env);
 			while(line[i])
@@ -41,12 +36,12 @@ void	map_delimit(t_map *map, char *file_map, t_env *env)
 		}
 		else
 		{
-			if (c == 5)
+			if (env->c == 5)
 				parse_texture(line, env);
 			else
 				parse_bonus_texture(line, env);
 			map->map_start++;
-		}		
+		}
 		free(line);
 		line = get_next_line(fd);
 	}
