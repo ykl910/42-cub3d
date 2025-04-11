@@ -6,7 +6,7 @@
 /*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 09:33:08 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/09 17:06:35 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/11 18:10:59 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,12 @@ int	render_loop(t_env *env)
 		player_rotate_left(env->player);
 	if (env->keys[RIGHT])
 		player_rotate_right(env->player);
-	if (env->keys[SPACE] && env->door_opened == 0)
+	if (env->keys[E] && env->door_opened == 0)
 		open_door(env);
-	if (env->keys[SPACE] && env->door_opened == 1)
+	if (env->keys[E] && env->door_opened == 1)
 		close_door(env);
+	if (env->keys[SPACE])
+		update_weapon(env);
 	mlx_destroy_image(env->mlx, env->img);
 	env->img = mlx_new_image(env->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	env->addr = mlx_get_data_addr(env->img, &env->bits_per_pixel, \
@@ -37,6 +39,7 @@ int	render_loop(t_env *env)
 	raycasting(env->player, env->map, env);
 	draw_minimap(env);
 	draw_player_on_minimap(env);
+	draw_weapon(env);
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 	return (0);
 }
@@ -52,14 +55,18 @@ int	key_press(int keycode, t_env *env)
 		env->keys[keycode] = 1;
 	if (keycode == LEFT || keycode == RIGHT)
 		env->keys[keycode] = 1;
-	if (keycode == SPACE && env->door_opened == 0)
+	if (keycode == E && env->door_opened == 0)
 	{
 		env->door_opened = 1;
 		env->keys[keycode] = 1;
 	}
-	else if (keycode == SPACE && env->door_opened == 1)
+	else if (keycode == E && env->door_opened == 1)
 	{
 		env->door_opened = 0;
+		env->keys[keycode] = 1;
+	}
+	else if (keycode == SPACE)
+	{
 		env->keys[keycode] = 1;
 	}
 	return (0);

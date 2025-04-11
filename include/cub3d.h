@@ -15,6 +15,7 @@
 # define D 100
 # define S 115
 # define W 119
+# define E 101
 # define SPACE 32
 # define LEFT 65361
 # define RIGHT 65363
@@ -59,6 +60,19 @@ typedef struct s_texture
 	void	*img;
 }	t_texture;
 
+typedef struct s_weapon
+{
+	int		width;
+	int		height;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	void	*img;
+	char	*data;
+	double	pos_x;
+	double	pos_y;
+}	t_weapon;
+
 typedef struct s_env
 {
 	void		*mlx;
@@ -78,6 +92,7 @@ typedef struct s_env
 	t_player	*player;
 	t_map		*map;
 	t_texture	*textures[6];
+	t_weapon	*weapon[4];
 }	t_env;
 
 typedef struct s_player
@@ -133,7 +148,6 @@ void	map_parsing(t_env *env, char *file_map);
 
 // raycasting
 void	init_player_dir(t_player *player, t_map *map);
-void	init_player_cam(t_player *player, t_map *map, t_env *env);
 void	calculate_distance(t_player *player);
 void	dda(t_player *player);
 void	add_door_side(t_player *player, t_map *map);
@@ -154,6 +168,11 @@ void	draw_player_on_minimap(t_env *env);
 // door
 void	open_door(t_env *env);
 void	close_door(t_env *env);
+
+// weapon
+void	weapon_init(t_env *env);
+void	draw_weapon(t_env *env);
+void	update_weapon(t_env *env);
 
 // mlx events
 int		render_loop(t_env *env);
