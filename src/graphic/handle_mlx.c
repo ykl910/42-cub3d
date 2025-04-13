@@ -31,15 +31,22 @@ int	render_loop(t_env *env)
 	if (env->keys[E] && env->door_opened == 1)
 		close_door(env);
 	if (env->keys[SPACE])
-		update_weapon(env);
+	{
+		if (!env->is_shooting)
+		{
+			env->is_shooting = 1;
+			env->shooting_frame = 0;
+			env->shooting_timer = 0;
+		}
+	}
 	mlx_destroy_image(env->mlx, env->img);
 	env->img = mlx_new_image(env->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	env->addr = mlx_get_data_addr(env->img, &env->bits_per_pixel, \
 		&env->line_length, &env->endian);
 	raycasting(env->player, env->map, env);
 	draw_minimap(env);
-	draw_player_on_minimap(env);
 	draw_weapon(env);
+	draw_player_on_minimap(env);
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 	return (0);
 }
@@ -66,9 +73,7 @@ int	key_press(int keycode, t_env *env)
 		env->keys[keycode] = 1;
 	}
 	else if (keycode == SPACE)
-	{
 		env->keys[keycode] = 1;
-	}
 	return (0);
 }
 

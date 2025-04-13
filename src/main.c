@@ -21,6 +21,7 @@ int	main(int argc, char **argv)
 	(void)argc;
 
 	keys_init(&env);
+	
 	env.map = &map;
 	env.player = &player;
 	map_init(&map, &env, argv[1]);
@@ -30,7 +31,7 @@ int	main(int argc, char **argv)
 	init_player_dir(&player, &map);
 	init_mlx(&env);
 	init_texture(&env);
-
+	weapon_init(&env);
 	//mlx_key_hook(env.win, key_press_door, &env);
 	mlx_hook(env.win, KeyPress, KeyPressMask, key_press, &env);
 	mlx_hook(env.win, KeyRelease, KeyReleaseMask, key_release, &env);

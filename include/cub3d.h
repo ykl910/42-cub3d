@@ -22,6 +22,7 @@
 # define UP 65362
 # define DOWN 65364
 # define MINIMAP_SCALE 5
+# define WEAPONE_SCALE 10
 
 # include <stdbool.h>
 # include <stdlib.h>
@@ -68,9 +69,10 @@ typedef struct s_weapon
 	int		line_length;
 	int		endian;
 	void	*img;
-	char	*data;
+	int		*data;
 	double	pos_x;
 	double	pos_y;
+
 }	t_weapon;
 
 typedef struct s_env
@@ -93,6 +95,9 @@ typedef struct s_env
 	t_map		*map;
 	t_texture	*textures[6];
 	t_weapon	*weapon[4];
+	int			shooting_frame;
+	int			is_shooting;
+	int			shooting_timer;	
 }	t_env;
 
 typedef struct s_player
