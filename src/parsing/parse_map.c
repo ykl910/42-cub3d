@@ -3,20 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:28:09 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/09 15:11:19 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/15 16:13:24 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+static void	process_map_line(t_map *map, char *line)
+{
+	int	i;
+
+	i = 0;
+	if (map->started_map == 0)
+		map->started_map = 1;
+	while (line[i])
+		i++;
+	if (map->w_max < i)
+		map->w_max = i;
+	map->h_max++;
+}
+
 void	map_delimit(t_map *map, char *file_map, t_env *env)
 {
 	int		fd;
 	char	*line;
-	int		i;
 
 	fd = open(file_map, O_RDONLY);
 	if (fd < 0)
@@ -24,25 +37,64 @@ void	map_delimit(t_map *map, char *file_map, t_env *env)
 	line = get_next_line(fd);
 	while (line)
 	{
-		i = 0;
 		if (env->texture_path[env->c] && line[0] != '\n')
-		{
-			check_map_wall(line, env);
-			while(line[i])
-				i++;
-			if (map->w_max < i)
-				map->w_max = i;
-			map->h_max++;
-		}
+			process_map_line(map, line);
 		else
 		{
-			parse_texture(line, env);
-			map->map_start++;
+			if (line[0] != '\n')
+				parse_texture(line, env);
+			if (map->started_map == 0)
+				map->map_start++;
 		}
 		free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
+}
+
+static void	parse_map_line_content(t_env *env, t_map *map, char *line)
+{
+	map->x = -1;
+	while (line[++map->x] != '\0' && line[map->x] != '\n')
+	{
+		if (line[map->x] != 'N' && line[map->x] != 'S' && line[map->x] != 'E' &&
+			line[map->x] != 'W' && line[map->x] != '0' && line[map->x] != '1' &&
+			line[map->x] != ' ' && line[map->x] != 'C')
+			ft_invalid("Invalid character in map\n", env);
+		if (line[map->x] == 'C' && !env->bonus)
+			ft_invalid("Invalid character in map\n", env);
+		if (line[map->x] == 'N' || line[map->x] == 'S' ||
+			line[map->x] == 'E' || line[map->x] == 'W')
+		{
+			env->player_count++;
+			if (env->player_count > 1)
+				ft_invalid("Invalid character in map\n", env);
+		}
+		if (line[map->x] == ' ')
+			map->final_map[map->y][map->x] = '2';
+		else
+			map->final_map[map->y][map->x] = line[map->x];
+	}
+	map->final_map[map->y][map->w_max] = '\0';
+}
+
+static void	fill_map(t_env *env, t_map *map, int fd)
+{
+	char	*line;
+
+	while (map->y < map->h_max)
+	{
+		map->final_map[map->y] = ft_calloc_two(map->w_max, sizeof(char));
+		if (!map->final_map[map->y])
+			ft_invalid("Malloc failled !\n", env);
+		line = get_next_line(fd);
+		parse_map_line_content(env, map, line);
+		map->y++;
+		free(line);
+	}
+	if (env->player_count == 0)
+		ft_invalid("No player in map\n", env);
+	check_map_closed_and_connected(env);
 }
 
 void	map_parsing(t_env *env, char *file_map)
@@ -61,51 +113,6 @@ void	map_parsing(t_env *env, char *file_map)
 		line = get_next_line(fd);
 		free(line);
 	}
-	while (map->y < map->h_max)
-	{
-		map->final_map[map->y] = ft_calloc_two(map->w_max, sizeof(char));
-		if (!map->final_map[map->y])
-			ft_invalid("Malloc failled !\n", env);
-		line = get_next_line(fd);
-		map->x = -1;
-		while (line[++map->x] != '\n')
-		{
-			if (line[map->x] != 'N' && line[map->x] != 'S' && line[map->x] != 'E' &&
-				line[map->x] != 'W' && line[map->x] != '0' && line[map->x] != '1' && 
-				line[map->x] != ' ' && line[map->x] != 'C')
-				ft_invalid("Invalid character in map\n", env);
-
-			if (line[map->x] == ' ')
-				map->final_map[map->y][map->x] = '2';
-			else
-				map->final_map[map->y][map->x] = (line[map->x]);
-		}
-		map->final_map[map->y][map->w_max] = '\0';
-		map->y++;
-		free(line);
-	}
+	fill_map(env, map, fd);
 	close(fd);
-}
-
-void	check_map_wall(char *line, t_env *env)
-{
-	int	i;
-	int	len;
-
-	len = ft_strlen(line);
-	i = 0;
-	while (line[i] != '\0' && line[i] == ' ')
-		i++;
-	if (line[i] != '1')
-	{
-		free(line);
-		ft_invalid("Map invalid - no wall\n", env);
-	}
-	while (line[len - 2] == ' ' && len > 1)
-		len--;
-	if (line[len - 2] != '1')
-	{
-		free(line);
-		ft_invalid("Map invalid - no wall\n", env);
-	}
 }

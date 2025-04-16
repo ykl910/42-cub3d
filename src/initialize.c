@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 12:55:05 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/09 15:15:53 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/15 14:48:25 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	map_init(t_map *map, t_env *env, char *file_map)
 	map->h_max = 0;
 	map->w_max = 0;
 	map->map_start = 0;
+	map->started_map = 0;
 	map->final_map = NULL;
 	while (i < 8)
 	{
@@ -50,6 +51,7 @@ void	keys_init(t_env *env)
 	env->keys[LEFT] = 0;
 	env->keys[RIGHT] = 0;
 	env->door_opened = 0;
+	env->player_count = 0;
 }
 
 void	init_mlx(t_env	*env)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 14:11:40 by kyang             #+#    #+#             */
-/*   Updated: 2025/04/09 14:23:49 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/15 16:42:08 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	main(int argc, char **argv)
 	init_player_dir(&player, &map);
 	init_mlx(&env);
 	init_texture(&env);
-
 	//mlx_key_hook(env.win, key_press_door, &env);
 	mlx_hook(env.win, KeyPress, KeyPressMask, key_press, &env);
 	mlx_hook(env.win, KeyRelease, KeyReleaseMask, key_release, &env);

@@ -20,7 +20,7 @@
 # define RIGHT 65363
 # define UP 65362
 # define DOWN 65364
-# define MINIMAP_SCALE 5
+# define MINIMAP_SCALE 7
 
 # include <stdbool.h>
 # include <stdlib.h>
@@ -44,6 +44,7 @@ typedef struct s_map
 	int		h_max;
 	int		w_max;
 	int		map_start;
+	int		started_map;
 	char	**final_map;
 
 }	t_map;
@@ -75,6 +76,7 @@ typedef struct s_env
 	int			bonus;
 	int			c;
 	int			door_opened;
+	int			player_count;
 	t_player	*player;
 	t_map		*map;
 	t_texture	*textures[6];
@@ -117,19 +119,16 @@ typedef struct s_player
 // init
 void	keys_init(t_env *env);
 void	init_texture(t_env *env);
-
-//	map parsing thomas
-void	*ft_calloc_two(size_t count, size_t size);
-void	ft_btwo(void *s, size_t n);
-void	print_map(t_map *map);
-void	check_map_wall(char *line, t_env *env);
+void	map_init(t_map *map, t_env *env, char *file_map);
 
 // parsing
 void	parse_texture(char *line, t_env *env);
 int 	color_convert(char *color, t_env *env);
-void	map_init(t_map *map, t_env *env, char *file_map);
+
 void	map_delimit(t_map *map, char *file_map, t_env *env);
 void	map_parsing(t_env *env, char *file_map);
+void	check_map_closed_and_connected(t_env *env);
+
 
 // raycasting
 void	init_player_dir(t_player *player, t_map *map);
@@ -150,6 +149,9 @@ void	draw_pixel_to_image(t_env *env, int x, int y, int color);
 // minimap
 void	draw_minimap(t_env *env);
 void	draw_player_on_minimap(t_env *env);
+void	draw_square(t_env *env, int x, int y, int color);
+void	draw_player_dir_on_minimap(t_env *env);
+
 
 // door
 void	open_door(t_env *env);
@@ -171,9 +173,9 @@ void	player_rotate_left(t_player *player);
 void	free_ressources(t_env *env);
 int		handle_destroy(t_env *env);
 void	free_char_arr(char **list);
+void	print_map(t_map *map);
 int		ft_invalid(char *error_message, t_env *env);
-
-
-
+void	*ft_calloc_two(size_t count, size_t size);
+void	ft_btwo(void *s, size_t n);
 
 #endif

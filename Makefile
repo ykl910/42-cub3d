@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kyang <kyang@student.42.fr>                +#+  +:+       +#+         #
+#    By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/31 16:25:43 by kyang             #+#    #+#              #
-#    Updated: 2025/04/09 17:05:56 by kyang            ###   ########.fr        #
+#    Updated: 2025/04/16 10:16:22 by tbellest         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ INCDIR = include
 
 SRC_MAIN = main.c
 SRC_UTILS = utils.c
-SRC_PARSING = parsing/parse_map.c parsing/parse_texture.c
+SRC_PARSING = parsing/parse_map.c parsing/parse_texture.c parsing/check_map.c
 SRC_RAYCASTING = raycasting/raycasting.c raycasting/init_pos_dir.c raycasting/calculations.c raycasting/draw.c
 SRC_GRAPHIC = graphic/handle_mlx.c graphic/move_player.c graphic/rotate_player.c \
 				graphic/mini_map.c graphic/door.c
