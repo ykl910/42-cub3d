@@ -22,7 +22,7 @@ SRC_UTILS = utils.c
 SRC_PARSING = parsing/parse_map.c parsing/parse_texture.c parsing/check_map.c
 SRC_RAYCASTING = raycasting/raycasting.c raycasting/init_pos_dir.c raycasting/calculations.c raycasting/draw.c
 SRC_GRAPHIC = graphic/handle_mlx.c graphic/move_player.c graphic/rotate_player.c \
-				graphic/mini_map.c graphic/door.c
+				graphic/mini_map.c graphic/door.c graphic/weapon.c
 SRC_INITIALIZE = initialize.c
 SRC = $(SRC_MAIN) $(SRC_UTILS) $(SRC_PARSING) $(SRC_RAYCASTING) $(SRC_GRAPHIC) $(SRC_INITIALIZE)
 SRCS = $(addprefix $(SRCDIR)/, $(SRC))
@@ -49,7 +49,7 @@ $(OBJDIR)/%.o: %.c | $(OBJDIR)
 $(NAME): $(OBJS) $(LIBFT)
 	make -C $(LIBFT)
 	make -C $(MINILIBX)
-	$(CC) $(CFLAGS) $(OBJS) -L$(MINILIBX) -L/usr/lib -I$(MINILIBX) -lXext -lX11 -lm -lz $(MINILIBX)/libmlx.a ./libft/libft.a -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -L$(MINILIBX) -L/usr/lib -I$(MINILIBX) -lmlx -lXext -lX11 -lm -lz ./libft/libft.a -o $(NAME)
 
 clean:
 	rm -rf $(OBJDIR)

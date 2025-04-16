@@ -15,12 +15,14 @@
 # define D 100
 # define S 115
 # define W 119
+# define E 101
 # define SPACE 32
 # define LEFT 65361
 # define RIGHT 65363
 # define UP 65362
 # define DOWN 65364
-# define MINIMAP_SCALE 7
+# define MINIMAP_SCALE 5
+# define WEAPONE_SCALE 10
 
 # include <stdbool.h>
 # include <stdlib.h>
@@ -60,6 +62,20 @@ typedef struct s_texture
 	void	*img;
 }	t_texture;
 
+typedef struct s_weapon
+{
+	int		width;
+	int		height;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	void	*img;
+	int		*data;
+	double	pos_x;
+	double	pos_y;
+
+}	t_weapon;
+
 typedef struct s_env
 {
 	void		*mlx;
@@ -80,6 +96,10 @@ typedef struct s_env
 	t_player	*player;
 	t_map		*map;
 	t_texture	*textures[6];
+	t_weapon	*weapon[4];
+	int			shooting_frame;
+	int			is_shooting;
+	int			shooting_timer;
 }	t_env;
 
 typedef struct s_player
@@ -132,7 +152,6 @@ void	check_map_closed_and_connected(t_env *env);
 
 // raycasting
 void	init_player_dir(t_player *player, t_map *map);
-void	init_player_cam(t_player *player, t_map *map, t_env *env);
 void	calculate_distance(t_player *player);
 void	dda(t_player *player);
 void	add_door_side(t_player *player, t_map *map);
@@ -156,6 +175,11 @@ void	draw_player_dir_on_minimap(t_env *env);
 // door
 void	open_door(t_env *env);
 void	close_door(t_env *env);
+
+// weapon
+void	weapon_init(t_env *env);
+void	draw_weapon(t_env *env);
+void	update_weapon(t_env *env);
 
 // mlx events
 int		render_loop(t_env *env);
