@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 12:55:05 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/17 16:44:39 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/17 17:52:18 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	init_env(t_env *env)
 	env->keys[S] = 0;
 	env->keys[D] = 0;
 	env->keys[E] = 0;
+	env->keys[R] = 0;
 	env->keys[SPACE] = 0;
 	env->keys[LEFT] = 0;
 	env->keys[RIGHT] = 0;

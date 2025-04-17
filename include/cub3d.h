@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 16:57:05 by kyang             #+#    #+#             */
-/*   Updated: 2025/04/17 17:07:09 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/17 17:51:26 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define S 115
 # define W 119
 # define E 101
+# define R 114
 # define SPACE 32
 # define LEFT 65361
 # define RIGHT 65363
@@ -183,6 +184,8 @@ void	draw_player_dir_on_minimap(t_env *env);
 // door
 void	open_door(t_env *env);
 void	close_door(t_env *env);
+int		is_open_door(t_env *env);
+int		is_close_door(t_env *env);
 
 // weapon
 void	weapon_init(t_env *env);

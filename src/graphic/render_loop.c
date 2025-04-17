@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_loop.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 16:06:10 by kyang             #+#    #+#             */
-/*   Updated: 2025/04/17 16:08:36 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/17 17:51:48 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	keyboard_move(t_env *env)
 		player_rotate_left(env->player);
 	if (env->keys[RIGHT])
 		player_rotate_right(env->player);
-	if (env->keys[E] && env->door_opened == 0)
+	if (env->keys[E])
 		open_door(env);
-	if (env->keys[E] && env->door_opened == 1)
+	if (env->keys[R])
 		close_door(env);
 	if (env->keys[SPACE])
 	{

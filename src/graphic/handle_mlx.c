@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_mlx.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 09:33:08 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/17 17:04:53 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/17 17:53:41 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,8 @@ int	key_press(int keycode, t_env *env)
 		env->keys[keycode] = 1;
 	if (keycode == LEFT || keycode == RIGHT)
 		env->keys[keycode] = 1;
-	if (keycode == E && env->door_opened == 0)
-	{
-		env->door_opened = 1;
+	if (keycode == E || keycode == R)
 		env->keys[keycode] = 1;
-	}
-	else if (keycode == E && env->door_opened == 1)
-	{
-		env->door_opened = 0;
-		env->keys[keycode] = 1;
-	}
 	else if (keycode == SPACE)
 		env->keys[keycode] = 1;
 	return (0);
