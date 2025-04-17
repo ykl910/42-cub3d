@@ -6,7 +6,7 @@
 /*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 12:55:05 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/17 11:51:46 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/17 12:43:03 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ void	map_init(t_map *map, t_env *env, char *file_map)
 	map->map_start = 0;
 	map->started_map = 0;
 	map->final_map = NULL;
+	env->img = NULL;
+	env->addr = NULL;
+	env->mlx = NULL;
+	env->win = NULL;
 	while (i < 8)
 	{
 		env->texture_path[i] = NULL;

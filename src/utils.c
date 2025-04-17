@@ -6,7 +6,7 @@
 /*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:34:38 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/17 12:17:48 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/17 12:45:48 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	ft_invalid(char *error_message, t_env *env)
 {
 	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(error_message, 2);
+	get_next_line(-1);
 	free_ressources(env);
 	exit(1);
 }

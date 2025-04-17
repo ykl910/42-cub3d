@@ -6,7 +6,7 @@
 /*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:28:09 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/17 12:16:46 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/17 12:59:21 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ static void	parse_map_line_content(t_env *env, t_map *map, char *line)
 		else
 			map->final_map[map->y][map->x] = line[map->x];
 	}
+	// get_next_line(-1);
 	//map->final_map[map->y][map->w_max] = '\0';
 }
 
@@ -92,13 +93,15 @@ static void	fill_map(t_env *env, t_map *map, int fd)
 		if (!map->final_map[map->y])
 			ft_invalid("Malloc failled !\n", env);
 		line = get_next_line(fd);
+
 		parse_map_line_content(env, map, line);
 		map->y++;
 		free(line);
 	}
 	if (env->player_count == 0)
 		ft_invalid("No player in map\n", env);
-	//check_map_closed_and_connected(env);
+	//get_next_line(-1);
+	check_map_closed_and_connected(env);
 }
 
 void	map_parsing(t_env *env, char *file_map)
@@ -118,5 +121,6 @@ void	map_parsing(t_env *env, char *file_map)
 		free(line);
 	}
 	fill_map(env, map, fd);
+	get_next_line(-1);
 	close(fd);
 }

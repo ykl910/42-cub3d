@@ -6,7 +6,7 @@
 /*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 14:11:40 by kyang             #+#    #+#             */
-/*   Updated: 2025/04/17 12:07:00 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/17 12:22:17 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 	map_init(&map, &env, argv[1]);
 	map_delimit(&map, argv[1], &env);
 	map_parsing(&env, argv[1]);
-	print_map(&map);
+	// print_map(&map);
 	init_player_dir(&player, &map);
 	init_mlx(&env);
 	init_texture(&env);
