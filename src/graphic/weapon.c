@@ -1,27 +1,72 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   weapon.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/17 10:55:25 by tbellest          #+#    #+#             */
+/*   Updated: 2025/04/17 10:58:24 by tbellest         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
+
+char	*create_weapon_path(int i)
+{
+	char	*number;
+	char	*path1;
+	char	*path2;
+
+	number = ft_itoa(i + 1);
+	if (!number)
+		return (NULL);
+	path1 = ft_strjoin("texture/item/", number);
+	if (!path1)
+	{
+		free(number);
+		return (NULL);
+	}
+	path2 = ft_strjoin(path1, ".xpm");
+	if (!path2)
+	{
+		free(path1);
+		free(number);
+		return (NULL);
+	}
+	free(path1);
+	free(number);
+//	path = ft_strjoin(ft_strjoin("texture/item/", ft_itoa(i + 1)), ".xpm");
+	return (path2);
+}
 
 void	weapon_init(t_env *env)
 {
 	int			i;
+	char		*path;
 
 	i = 0;
 	while (i < 4)
 	{
+		path = create_weapon_path(i);
+		if (!path)
+			ft_invalid("Malloc weapon path failed\n", env);
 		env->weapon[i] = malloc(sizeof(t_weapon));
 		if (!env->weapon[i])
 			ft_invalid("Malloc weapon failed\n", env);
 		env->weapon[i]->img = mlx_xpm_file_to_image(env->mlx, \
-			ft_strjoin(ft_strjoin("texture/item/", ft_itoa(i + 1)), ".xpm"), &env->weapon[i]->width, \
+			path, &env->weapon[i]->width, \
 			&env->weapon[i]->height);
 		if (!env->weapon[i]->img)
 			ft_invalid("weapon loading failed\n", env);
-		env->weapon[i]->data = 
+		env->weapon[i]->data =
 			(int *)mlx_get_data_addr(env->weapon[i]->img, \
 			&env->weapon[i]->bits_per_pixel, &env->weapon[i]->line_length, \
 			&env->weapon[i]->endian);
 		if (!env->weapon[i]->data)
 			ft_invalid("weapon data loading failed\n", env);
 		i++;
+		free(path);
 	}
 	env->is_shooting = 0;
 	env->shooting_frame = 0;
@@ -39,7 +84,7 @@ void	draw_scale_weapon(t_env *env, int x, int y, int color)
 		i = 0;
 		while (i < WEAPONE_SCALE)
 		{
-			draw_pixel_to_image(env, x + i + WINDOW_WIDTH / 2 - env->weapon[0]->width / 2, 
+			draw_pixel_to_image(env, x + i + WINDOW_WIDTH / 2 - env->weapon[0]->width / 2,
 				y + j + WINDOW_HEIGHT - env->weapon[0]->height - 650, color);
 			i++;
 		}

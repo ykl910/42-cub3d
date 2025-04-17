@@ -6,7 +6,7 @@
 /*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 09:33:08 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/17 09:22:11 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/17 09:25:38 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	render_loop(t_env *env)
 	draw_minimap(env);
 	draw_weapon(env);
 	draw_player_on_minimap(env);
-	// draw_player_dir_on_minimap(env);
+	draw_player_dir_on_minimap(env);
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 	return (0);
 }

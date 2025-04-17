@@ -6,7 +6,7 @@
 /*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 09:33:02 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/16 10:13:36 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/17 10:06:08 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ void	draw_minimap(t_env *env)
 			else if (env->map->final_map[y - 5][x - 5] == '0')
 				draw_square(env, x * MINIMAP_SCALE, y * MINIMAP_SCALE, 0xDDDDDD); //sol blanc
 			else if (env->map->final_map[y - 5][x - 5] == 'C')
-				draw_square(env, x * MINIMAP_SCALE, y * MINIMAP_SCALE, 0x333366); // bleu foncée
+				draw_square(env, x * MINIMAP_SCALE, y * MINIMAP_SCALE, RED); // bleu foncée
 			else if (env->map->final_map[y - 5][x - 5] == 'O')
-				draw_square(env, x * MINIMAP_SCALE, y * MINIMAP_SCALE, 0xAAAAFF); //bleu claire
+				draw_square(env, x * MINIMAP_SCALE, y * MINIMAP_SCALE, GREEN); //bleu claire
 			// else
 			// 	draw_square(env, x * MINIMAP_SCALE, y * MINIMAP_SCALE, 0xCCCCCC); //gris
 			x++;
@@ -71,32 +71,53 @@ void	draw_player_on_minimap(t_env *env)
 // {
 // 	int	px;
 // 	int	py;
-
-// 	px = (env->player->posX + 5) * MINIMAP_SCALE;
-// 	py = (env->player->posY + 5) * MINIMAP_SCALE;
-// 	draw_square(env, px - 1, py - 1, 0xFF0000);
-// 	draw_square(env, px + env->player->dirX * MINIMAP_SCALE,
-// 		py + env->player->dirY * MINIMAP_SCALE, 0xFF0000);
-// }
-
-
-// void	draw_player_dir_on_minimap(t_env *env)
-// {
-// 	int	px;
-// 	int	py;
 // 	int	i;
 // 	int	dx;
 // 	int	dy;
 
 // 	px = (env->player->posX + 5) * MINIMAP_SCALE;
 // 	py = (env->player->posY + 5) * MINIMAP_SCALE;
-// 	draw_square(env, px - 1, py - 1, 0xFF0000);
+// 	// draw_square(env, px - 1, py - 1, RED);
 // 	i = 1;
-// 	while (i <= 5)
+// 	while (i <= 2)
 // 	{
 // 		dx = px + env->player->dirX * i * MINIMAP_SCALE;
 // 		dy = py + env->player->dirY * i * MINIMAP_SCALE;
-// 		draw_square(env, dx - 1, dy - 1, 0xFF0000);
+// 		draw_square(env, dx - 1, dy - 1, BLUE);
 // 		i++;
 // 	}
 // }
+
+void	draw_player_dir_on_minimap(t_env *env)
+{
+	float	rayX;
+	float	rayY;
+	float	step = 0.05;
+	int		mapX;
+	int		mapY;
+	int		px;
+	int		py;
+	int		max_steps;
+
+	max_steps = (int)(5.0 / step);
+	rayX = env->player->posX;
+	rayY = env->player->posY;
+	while (max_steps--)
+	{
+		rayX += env->player->dirX * step;
+		rayY += env->player->dirY * step;
+		mapX = (int)rayX;
+		mapY = (int)rayY;
+		if (mapX < 0 || mapY < 0 || mapY >= env->map->h_max || mapX >= env->map->w_max)
+			break;
+		if (env->map->final_map[mapY][mapX] == '1' ||
+			env->map->final_map[mapY][mapX] == 'C')
+			break;
+		px = (rayX + 5) * MINIMAP_SCALE;
+		py = (rayY + 5) * MINIMAP_SCALE;
+		draw_square(env, px - 1, py - 1, BLUE);
+	}
+	px = (env->player->posX + 5) * MINIMAP_SCALE;
+	py = (env->player->posY + 5) * MINIMAP_SCALE;
+	draw_square(env, px - 1, py - 1, RED);
+}

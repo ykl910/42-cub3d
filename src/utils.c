@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:34:38 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/09 15:16:18 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/17 11:01:11 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,19 @@ void	free_ressources(t_env *env)
 			free(env->texture_path[i]);
 		i++;
 	}
+	while (i < 6)
+	{
+		if (env->texture_path[i])
+			mlx_destroy_image(env->mlx, env->textures[i]->img);
+		i++;
+	}
+	while (i < 4)
+	{
+		if (env->weapon[i])
+			mlx_destroy_image(env->mlx, env->weapon[i]->img);
+		i++;
+	}
+
 	if (env->img)
 		mlx_destroy_image(env->mlx, env->img);
 	if (env->win)

@@ -6,7 +6,7 @@
 /*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 12:55:05 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/15 14:48:25 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/17 10:50:01 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	keys_init(t_env *env)
 	env->keys[W] = 0;
 	env->keys[S] = 0;
 	env->keys[D] = 0;
+	env->keys[E] = 0;
 	env->keys[SPACE] = 0;
 	env->keys[LEFT] = 0;
 	env->keys[RIGHT] = 0;

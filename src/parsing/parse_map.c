@@ -6,7 +6,7 @@
 /*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:28:09 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/15 16:13:24 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/17 10:46:29 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,11 @@ void	map_delimit(t_map *map, char *file_map, t_env *env)
 {
 	int		fd;
 	char	*line;
+	char 	*tmp;
 
+	tmp = ft_strrchr(file_map, '.');
+	if (ft_strcmp(ft_strrchr(file_map, '.'), ".cub"))
+		ft_invalid("Map invalid - wrong externsion\n", env);
 	fd = open(file_map, O_RDONLY);
 	if (fd < 0)
 		ft_invalid("Map invalid - no permission\n", env);
