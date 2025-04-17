@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   weapon.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 10:55:25 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/17 10:58:24 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/17 15:37:45 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ char	*create_weapon_path(int i)
 	}
 	free(path1);
 	free(number);
-//	path = ft_strjoin(ft_strjoin("texture/item/", ft_itoa(i + 1)), ".xpm");
 	return (path2);
 }
 
@@ -50,21 +49,21 @@ void	weapon_init(t_env *env)
 	{
 		path = create_weapon_path(i);
 		if (!path)
-			ft_invalid("Malloc weapon path failed\n", env);
+			ft_invalid("Malloc weapon path failed\n", env, NULL);
 		env->weapon[i] = malloc(sizeof(t_weapon));
 		if (!env->weapon[i])
-			ft_invalid("Malloc weapon failed\n", env);
+			ft_invalid("Malloc weapon failed\n", env, NULL);
 		env->weapon[i]->img = mlx_xpm_file_to_image(env->mlx, \
 			path, &env->weapon[i]->width, \
 			&env->weapon[i]->height);
 		if (!env->weapon[i]->img)
-			ft_invalid("weapon loading failed\n", env);
+			ft_invalid("weapon loading failed\n", env, NULL);
 		env->weapon[i]->data =
 			(int *)mlx_get_data_addr(env->weapon[i]->img, \
 			&env->weapon[i]->bits_per_pixel, &env->weapon[i]->line_length, \
 			&env->weapon[i]->endian);
 		if (!env->weapon[i]->data)
-			ft_invalid("weapon data loading failed\n", env);
+			ft_invalid("weapon data loading failed\n", env, NULL);
 		i++;
 		free(path);
 	}

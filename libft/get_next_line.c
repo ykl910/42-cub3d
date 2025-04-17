@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 15:43:26 by kyang             #+#    #+#             */
-/*   Updated: 2025/04/17 12:58:35 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/17 15:03:11 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,12 @@ char	*get_next_line(int fd)
 	int			i;
 	char		*temp;
 
+	if (fd == -1)
+	{
+		free(stock);
+		stock = NULL;
+		return (NULL);
+	}
 	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0) < 0)
 		return (free(buffer), free(stock), buffer = NULL, stock = NULL, NULL);

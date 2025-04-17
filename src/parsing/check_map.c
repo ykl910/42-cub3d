@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 16:10:33 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/15 16:10:56 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/17 15:36:53 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 void	neighbours_is_full(char **map, int y, int x, t_env *env)
 {
 	if (y <= 0 || y >= env->map->h_max - 1 || x <= 0 || x >= env->map->w_max - 1)
-		ft_invalid("Map not closed (border reached)\n", env);
+		ft_invalid("Map not closed (border reached)\n", env, NULL);
 	if (map[y + 1][x] == '2')
-		ft_invalid("Map not closed (void space)\n", env);
+		ft_invalid("Map not closed (void space)\n", env, NULL);
 	if (map[y - 1][x] == '2')
-		ft_invalid("Map not closed (void space)\n", env);
+		ft_invalid("Map not closed (void space)\n", env, NULL);
 	if (map[y][x + 1] == '2')
-		ft_invalid("Map not closed (void space)\n", env);
+		ft_invalid("Map not closed (void space)\n", env, NULL);
 	if (map[y][x - 1] == '2')
-		ft_invalid("Map not closed (void space)\n", env);
+		ft_invalid("Map not closed (void space)\n", env, NULL);
 }
 
 void	check_map_closed_and_connected(t_env *env)

@@ -198,8 +198,7 @@ void	free_ressources(t_env *env);
 int		handle_destroy(t_env *env);
 void	free_char_arr(char **list);
 void	print_map(t_map *map);
-int		ft_invalid(char *error_message, t_env *env);
+int		ft_invalid(char *error_message, t_env *env, char *line);
 char	*ft_calloc_two(int count, size_t size);
-void	ft_btwo(void *s, size_t n);
 
 #endif

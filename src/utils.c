@@ -3,21 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:34:38 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/17 12:45:48 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/17 15:34:52 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	ft_invalid(char *error_message, t_env *env)
+int	ft_invalid(char *error_message, t_env *env, char *line)
 {
 	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(error_message, 2);
 	get_next_line(-1);
 	free_ressources(env);
+	if (line)
+		free(line);
 	exit(1);
 }
 
