@@ -6,7 +6,7 @@
 /*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 10:55:25 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/17 15:37:45 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/17 16:00:18 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	weapon_init(t_env *env)
 	int			i;
 	char		*path;
 
-	i = 0;
-	while (i < 4)
+	i = -1;
+	while (++i < 4)
 	{
 		path = create_weapon_path(i);
 		if (!path)
@@ -58,18 +58,14 @@ void	weapon_init(t_env *env)
 			&env->weapon[i]->height);
 		if (!env->weapon[i]->img)
 			ft_invalid("weapon loading failed\n", env, NULL);
-		env->weapon[i]->data =
+		env->weapon[i]->data = \
 			(int *)mlx_get_data_addr(env->weapon[i]->img, \
 			&env->weapon[i]->bits_per_pixel, &env->weapon[i]->line_length, \
 			&env->weapon[i]->endian);
 		if (!env->weapon[i]->data)
 			ft_invalid("weapon data loading failed\n", env, NULL);
-		i++;
 		free(path);
 	}
-	env->is_shooting = 0;
-	env->shooting_frame = 0;
-	env->shooting_timer = 0;
 }
 
 void	draw_scale_weapon(t_env *env, int x, int y, int color)

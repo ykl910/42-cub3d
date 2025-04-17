@@ -6,7 +6,7 @@
 /*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:28:09 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/17 15:42:47 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/17 16:01:54 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	map_delimit(t_map *map, char *file_map, t_env *env)
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (env->texture_path[env->c] && line[0] != '\n')
+		if ((env->parsed_texture == (env->c) + 1) && line[0] != '\n')
 			process_map_line(map, line);
 		else
 		{

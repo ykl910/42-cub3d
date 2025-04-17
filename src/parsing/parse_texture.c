@@ -6,7 +6,7 @@
 /*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 14:35:41 by kyang             #+#    #+#             */
-/*   Updated: 2025/04/17 15:40:48 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/17 15:56:10 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,29 @@
 void	parse_wall_texture(char **split_line, t_env *env, int i)
 {
 	if (ft_strncmp(split_line[i], "NO", 2) == 0)
+	{
 		env->texture_path[3] = ft_strndup(split_line[i + 1],
 				ft_strlen(split_line[i + 1]) - 1);
+		env->parsed_texture++;		
+	}
 	else if (ft_strncmp(split_line[i], "SO", 2) == 0)
+	{
 		env->texture_path[2] = ft_strndup(split_line[i + 1],
 				ft_strlen(split_line[i + 1]) - 1);
+		env->parsed_texture++;		
+	}
 	else if (ft_strncmp(split_line[i], "WE", 2) == 0)
+	{
 		env->texture_path[1] = ft_strndup(split_line[i + 1],
 				ft_strlen(split_line[i + 1]) - 1);
+		env->parsed_texture++;		
+	}
 	else if (ft_strncmp(split_line[i], "EA", 2) == 0)
+	{
 		env->texture_path[0] = ft_strndup(split_line[i + 1],
 				ft_strlen(split_line[i + 1]) - 1);
+		env->parsed_texture++;		
+	}
 }
 
 void	parse_floor_ceiling_door(char **split_line, t_env *env, int i)
@@ -33,26 +45,44 @@ void	parse_floor_ceiling_door(char **split_line, t_env *env, int i)
 	if (env->bonus)
 	{
 		if (ft_strncmp(split_line[i], "DON", 3) == 0)
+		{
 			env->texture_path[4] = ft_strndup(split_line[i + 1],
 					ft_strlen(split_line[i + 1]) - 1);
+			env->parsed_texture++;
+		}
 		else if (ft_strncmp(split_line[i], "DOE", 3) == 0)
+		{
 			env->texture_path[5] = ft_strndup(split_line[i + 1],
 					ft_strlen(split_line[i + 1]) - 1);
+			env->parsed_texture++;
+		}
 		else if (ft_strncmp(split_line[i], "F", 1) == 0)
+		{
 			env->texture_path[6] = ft_strndup(split_line[i + 1],
 					ft_strlen(split_line[i + 1]) - 1);
+			env->parsed_texture++;	
+		}
 		else if (ft_strncmp(split_line[i], "C", 1) == 0)
+		{
 			env->texture_path[7] = ft_strndup(split_line[i + 1],
 					ft_strlen(split_line[i + 1]) - 1);
+			env->parsed_texture++;
+		}
 	}
 	else
 	{
 		if (ft_strncmp(split_line[i], "F", 1) == 0)
+		{
 			env->texture_path[4] = ft_strndup(split_line[i + 1],
 					ft_strlen(split_line[i + 1]) - 1);
+			env->parsed_texture++;			
+		}
 		else if (ft_strncmp(split_line[i], "C", 1) == 0)
+		{
 			env->texture_path[5] = ft_strndup(split_line[i + 1],
 					ft_strlen(split_line[i + 1]) - 1);
+			env->parsed_texture++;			
+		}
 	}
 }
 

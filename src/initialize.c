@@ -6,7 +6,7 @@
 /*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 12:55:05 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/17 15:38:01 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/17 15:53:04 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,10 @@ void	map_init(t_map *map, t_env *env, char *file_map)
 		env->weapon[i] = NULL;
 		i++;
 	}
+	env->is_shooting = 0;
+	env->shooting_frame = 0;
+	env->shooting_timer = 0;
+	env->parsed_texture = 0;
 }
 
 void	keys_init(t_env *env)

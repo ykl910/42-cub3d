@@ -100,6 +100,7 @@ typedef struct s_env
 	int			shooting_frame;
 	int			is_shooting;
 	int			shooting_timer;
+	int			parsed_texture;
 }	t_env;
 
 typedef struct s_player
