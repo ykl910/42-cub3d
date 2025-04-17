@@ -1,5 +1,14 @@
-
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/17 16:57:05 by kyang             #+#    #+#             */
+/*   Updated: 2025/04/17 17:07:09 by kyang            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -36,7 +45,7 @@
 # include "../libft/get_next_line.h"
 # include "../minilibx-linux/mlx.h"
 
-typedef struct s_player t_player;
+typedef struct s_player	t_player;
 
 typedef struct s_map
 {
@@ -105,51 +114,50 @@ typedef struct s_env
 
 typedef struct s_player
 {
-	double	posX;
-	double	posY;
-	double	dirX;
-	double	dirY;
-	double	planeX;
-	double	planeY;
-	int		mapX;
-	int		mapY;
-	double	camX;
-	double	rayDirX;
-	double	rayDirY;
-	double	nearDistX;
-	double	nearDistY;
-	double	deltaDistX;
-	double	deltaDistY;
-	double	perpWallDist;
-	int		stepX;
-	int		stepY;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+	int		map_x;
+	int		map_y;
+	double	cam_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	double	near_dist_x;
+	double	near_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	perp_wall_dist;
+	int		step_x;
+	int		step_y;
 	int		hit;
 	int		side;
-	int		lineHeight;
-	int		drawStart;
-	int		drawEnd;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
 	int		color;
-	double	wallX;
-	int		texX;
-	int		texY;
+	double	wall_x;
+	int		tex_x;
+	int		tex_y;
 	double	step;
-	double	texPos;
-} t_player;
-
+	double	tex_pos;
+}	t_player;
 
 // init
-void	keys_init(t_env *env);
+void	init_env(t_env *env);
 void	init_texture(t_env *env);
-void	map_init(t_map *map, t_env *env, char *file_map);
+void	init_map(t_map *map, t_env *env, char *file_map);
 
 // parsing
 void	parse_texture(char *line, t_env *env);
-int 	color_convert(char *color, t_env *env);
-
+int		color_convert(char *color, t_env *env);
 void	map_delimit(t_map *map, char *file_map, t_env *env);
 void	map_parsing(t_env *env, char *file_map);
 void	check_map_closed_and_connected(t_env *env);
-
+void	check_cub(char *file_map, t_env *env);
+void	check_extra_content_after_map(int fd, t_env *env);
 
 // raycasting
 void	init_player_dir(t_player *player, t_map *map);
@@ -172,7 +180,6 @@ void	draw_player_on_minimap(t_env *env);
 void	draw_square(t_env *env, int x, int y, int color);
 void	draw_player_dir_on_minimap(t_env *env);
 
-
 // door
 void	open_door(t_env *env);
 void	close_door(t_env *env);
@@ -180,7 +187,6 @@ void	close_door(t_env *env);
 // weapon
 void	weapon_init(t_env *env);
 void	draw_weapon(t_env *env);
-void	update_weapon(t_env *env);
 
 // mlx events
 int		render_loop(t_env *env);

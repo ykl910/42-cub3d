@@ -6,27 +6,21 @@
 /*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 12:55:05 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/17 15:53:04 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/17 16:44:39 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	map_init(t_map *map, t_env *env, char *file_map)
+void	init_map(t_map *map, t_env *env, char *file_map)
 {
 	int	i;
 
-	i = 0;
+	i = -1;
 	if (ft_strnstr(file_map, "bonus", ft_strlen(file_map)))
-	{
-		env->bonus = 1;
 		env->c = 7;
-	}
 	else
-	{
-		env->bonus = 0;
 		env->c = 5;
-	}
 	map->x = 0;
 	map->y = 0;
 	map->h_max = 0;
@@ -34,34 +28,17 @@ void	map_init(t_map *map, t_env *env, char *file_map)
 	map->map_start = 0;
 	map->started_map = 0;
 	map->final_map = NULL;
-	env->img = NULL;
-	env->addr = NULL;
-	env->mlx = NULL;
-	env->win = NULL;
-	while (i < 8)
-	{
+	while (++i < 8)
 		env->texture_path[i] = NULL;
-		i++;
-	}
-	i = 0;
-	while (i < 6)
-	{
+	i = -1;
+	while (++i < 6)
 		env->textures[i] = NULL;
-		i++;
-	}
-	i = 0;
-	while (i < 4)
-	{
+	i = -1;
+	while (++i < 4)
 		env->weapon[i] = NULL;
-		i++;
-	}
-	env->is_shooting = 0;
-	env->shooting_frame = 0;
-	env->shooting_timer = 0;
-	env->parsed_texture = 0;
 }
 
-void	keys_init(t_env *env)
+void	init_env(t_env *env)
 {
 	env->keys[A] = 0;
 	env->keys[W] = 0;
@@ -73,6 +50,14 @@ void	keys_init(t_env *env)
 	env->keys[RIGHT] = 0;
 	env->door_opened = 0;
 	env->player_count = 0;
+	env->is_shooting = 0;
+	env->shooting_frame = 0;
+	env->shooting_timer = 0;
+	env->parsed_texture = 0;
+	env->img = NULL;
+	env->addr = NULL;
+	env->mlx = NULL;
+	env->win = NULL;
 }
 
 void	init_mlx(t_env	*env)

@@ -6,7 +6,7 @@
 /*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 10:55:25 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/17 16:00:18 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/17 16:23:02 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,9 @@ void	draw_scale_weapon(t_env *env, int x, int y, int color)
 		i = 0;
 		while (i < WEAPONE_SCALE)
 		{
-			draw_pixel_to_image(env, x + i + WINDOW_WIDTH / 2 - env->weapon[0]->width / 2,
-				y + j + WINDOW_HEIGHT - env->weapon[0]->height - 650, color);
+			draw_pixel_to_image(env, x + i + WINDOW_WIDTH / 2
+				- env->weapon[0]->width / 2, y + j + WINDOW_HEIGHT
+				- env->weapon[0]->height - 650, color);
 			i++;
 		}
 		j++;
@@ -103,7 +104,8 @@ void	draw_weapon_frame(t_env *env, int weapon_index)
 			offset = i * (env->weapon[weapon_index]->line_length / 4) + j;
 			color = env->weapon[weapon_index]->data[offset];
 			if (color != 0xFFFFFF)
-				draw_scale_weapon(env, j * WEAPONE_SCALE, i * WEAPONE_SCALE, color);
+				draw_scale_weapon(env, j * WEAPONE_SCALE,
+					i * WEAPONE_SCALE, color);
 			j++;
 		}
 		i++;

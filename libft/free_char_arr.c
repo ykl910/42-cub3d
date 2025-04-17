@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   ft_free_char_arr.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/07 15:09:49 by kyang             #+#    #+#             */
-/*   Updated: 2025/04/17 16:45:57 by kyang            ###   ########.fr       */
+/*   Created: 2025/04/17 16:25:26 by kyang             #+#    #+#             */
+/*   Updated: 2025/04/17 16:25:57 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strndup(const char *s, size_t n)
+void	free_char_arr(char **list)
 {
-	char	*dup;
-	size_t	i;
+	int	i;
 
-	dup = malloc(n + 1);
-	if (!dup)
-		return (NULL);
 	i = 0;
-	while (i < n && s[i])
+	while (list[i])
 	{
-		dup[i] = s[i];
+		free(list[i]);
 		i++;
 	}
-	dup[i] = '\0';
-	return (dup);
+	free(list);
 }

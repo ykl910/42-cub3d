@@ -6,7 +6,7 @@
 /*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 13:12:21 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/09 17:09:08 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/17 17:07:19 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,16 @@ void	draw_line(t_player *player, t_env *env, int x, int y)
 	unsigned int	color;
 	int				tex_index;
 
-	while (y <= player->drawEnd)
+	while (y <= player->draw_end)
 	{
-		//player->texY = (int)texPos & (env->textures[player->side]->height - 1); // attention à la taille puissance de 2
-		player->texY = (int)player->texPos;
-		if (player->texY < 0)
-			player->texY = 0;
-		if (player->texY >= env->textures[player->side]->height)
-			player->texY = env->textures[player->side]->height - 1;
-		player->texPos += player->step;
-		tex_index = player->texY * \
-		(env->textures[player->side]->line_length / 4) + player->texX;
+		player->tex_y = (int)player->tex_pos;
+		if (player->tex_y < 0)
+			player->tex_y = 0;
+		if (player->tex_y >= env->textures[player->side]->height)
+			player->tex_y = env->textures[player->side]->height - 1;
+		player->tex_pos += player->step;
+		tex_index = player->tex_y * \
+		(env->textures[player->side]->line_length / 4) + player->tex_x;
 		color = env->textures[player->side]->data[tex_index];
 		draw_pixel_to_image(env, x, y, color);
 		y++;
@@ -40,12 +39,12 @@ void	draw_ceiling_floor(t_env *env, t_player *player, int x)
 	int	f;
 
 	c = 0;
-	while (c < player->drawStart)
+	while (c < player->draw_start)
 	{
 		draw_pixel_to_image(env, x, c, env->ceiling_color);
 		c++;
 	}
-	f = player->drawEnd;
+	f = player->draw_end;
 	while (f < WINDOW_HEIGHT)
 	{
 		draw_pixel_to_image(env, x, f, env->floor_color);
@@ -63,11 +62,11 @@ void	raycasting(t_player *player, t_map *map, t_env *env)
 	while (x < WINDOW_WIDTH)
 	{
 		player->hit = 0;
-		player->camX = 2 * x / (double)WINDOW_WIDTH - 1;
-		player->rayDirX = player->dirX + player->planeX * player->camX;
-		player->rayDirY = player->dirY + player->planeY * player->camX;
-		player->mapX = (int)player->posX;
-		player->mapY = (int)player->posY;
+		player->cam_x = 2 * x / (double)WINDOW_WIDTH - 1;
+		player->ray_dir_x = player->dir_x + player->plane_x * player->cam_x;
+		player->ray_dir_y = player->dir_y + player->plane_y * player->cam_x;
+		player->map_x = (int)player->pos_x;
+		player->map_y = (int)player->pos_y;
 		calculate_distance(player);
 		while (player->hit == 0)
 		{
