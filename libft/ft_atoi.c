@@ -6,7 +6,7 @@
 /*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 18:41:22 by kyang             #+#    #+#             */
-/*   Updated: 2024/12/18 10:25:29 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/17 16:46:37 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ft_atoi(const char *str)
 
 float	ft_atof(const char *str)
 {
-	int	i;
+	int		i;
 	float	s;
 	float	r;
 

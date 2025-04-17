@@ -6,7 +6,7 @@
 /*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:28:09 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/17 16:01:54 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/17 17:01:23 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,8 @@ void	map_delimit(t_map *map, char *file_map, t_env *env)
 {
 	int		fd;
 	char	*line;
-	char 	*tmp;
 
-	tmp = ft_strrchr(file_map, '.');
-	if (!tmp)
-		ft_invalid("Map invalid - no extension\n", env, NULL);
-	if (ft_strcmp(tmp, ".cub"))
-		ft_invalid("Map invalid - wrong externsion\n", env, NULL);
+	check_cub(file_map, env);
 	fd = open(file_map, O_RDONLY);
 	if (fd < 0)
 		ft_invalid("Map invalid - no permission\n", env, NULL);
@@ -63,13 +58,14 @@ void	parse_map_line_content(t_env *env, t_map *map, char *line)
 	map->x = -1;
 	while (line[++map->x] != '\0' && line[map->x] != '\n')
 	{
-		if (line[map->x] != 'N' && line[map->x] != 'S' && line[map->x] != 'E' &&
-			line[map->x] != 'W' && line[map->x] != '0' && line[map->x] != '1' &&
-			line[map->x] != ' ' && line[map->x] != 'C')
-			ft_invalid("Invalid character in map\n", env, line);	
-		if (line[map->x] == 'C' && !env->bonus)
+		if (line[map->x] != 'N' && line[map->x] != 'S' && line[map->x] != 'E' \
+			&& line[map->x] != 'W' && line[map->x] != '0' \
+			&& line[map->x] != '1' && line[map->x] != ' ' \
+			&& line[map->x] != 'C')
 			ft_invalid("Invalid character in map\n", env, line);
-		if (line[map->x] == 'N' || line[map->x] == 'S' ||
+		if (line[map->x] == 'C' && env->c == 5)
+			ft_invalid("Invalid character in map\n", env, line);
+		if (line[map->x] == 'N' || line[map->x] == 'S' || \
 			line[map->x] == 'E' || line[map->x] == 'W')
 		{
 			env->player_count++;
@@ -100,6 +96,7 @@ void	fill_map(t_env *env, t_map *map, int fd)
 	if (env->player_count == 0)
 		ft_invalid("No player in map\n", env, NULL);
 	check_map_closed_and_connected(env);
+	check_extra_content_after_map(fd, env);
 }
 
 void	map_parsing(t_env *env, char *file_map)
