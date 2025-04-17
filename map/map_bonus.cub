@@ -1,13 +1,15 @@
+
 NO texture/block/tube_coral_block_s.xpm
 SO texture/colors_blocks/creaking_heart_dormant_s.xpm
 WE texture/colors_blocks/crimson_stem.xpm
 EA texture/block/crimson_stem_s.xpm
 DON texture/door/mangrove_door_top.xpm
+
 DOE texture/door/mangrove_door_top.xpm
 
 F 101,67,33
-C 128,128,128
 
+C 128,128,128
         1111111111111111111111111
         1000000000110000000000001
         1011000001110000000000001
@@ -17,6 +19,7 @@ C 128,128,128
 1111C111111111C11100000010001
 11110111111111011101010010001
 11000000110101000000001C10001
+
 100000000000000110000000001111
 10000000000000001101010N00001
 11000001110101011111011000001

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:34:38 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/17 11:24:04 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/17 12:17:48 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	free_ressources(t_env *env)
 		}
 		i++;
 	}
-
 	if (env->img)
 		mlx_destroy_image(env->mlx, env->img);
 	if (env->win)
@@ -98,29 +97,34 @@ void	print_map(t_map *map)
 	}
 }
 
-void	*ft_calloc_two(size_t count, size_t size)
+char	*ft_calloc_two(int count, size_t size)
 {
-	void	*p;
+	char	*p;
+	int		i;
 
+	i = 0;
 	if (count != 0 && (count * size) / count != size)
 		return (NULL);
-	p = malloc(count * size);
+	p = malloc((count) * size);
 	if (!p)
 		return (NULL);
-	ft_btwo(p, (count * size));
-	return (p);
-}
-
-void	ft_btwo(void *s, size_t n)
-{
-	size_t			i;
-	unsigned char	*p;
-
-	p = s;
-	i = 0;
-	while (i < n)
+	while (i < count - 1)
 	{
 		p[i] = '2';
 		i++;
 	}
+	p[i] = '\0';
+
+	//ft_btwo(p, (count * size));
+	return (p);
 }
+
+// void	ft_btwo(void *s, size_t n)
+// {
+// 	size_t			i;
+// 	unsigned char	*p;
+
+// 	p = s;
+// 	i = 0;
+
+// }

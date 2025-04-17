@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 12:55:05 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/17 11:17:16 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/17 11:51:46 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,18 @@ void	map_init(t_map *map, t_env *env, char *file_map)
 	while (i < 8)
 	{
 		env->texture_path[i] = NULL;
+		i++;
+	}
+	i = 0;
+	while (i < 6)
+	{
+		env->textures[i] = NULL;
+		i++;
+	}
+	i = 0;
+	while (i < 4)
+	{
+		env->weapon[i] = NULL;
 		i++;
 	}
 }
