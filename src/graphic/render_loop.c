@@ -6,7 +6,7 @@
 /*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 16:06:10 by kyang             #+#    #+#             */
-/*   Updated: 2025/04/17 17:51:48 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/22 12:18:45 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,13 @@ int	render_loop(t_env *env)
 	env->addr = mlx_get_data_addr(env->img, &env->bits_per_pixel, \
 		&env->line_length, &env->endian);
 	raycasting(env->player, env->map, env);
-	draw_minimap(env);
-	draw_weapon(env);
-	draw_player_on_minimap(env);
-	draw_player_dir_on_minimap(env);
+	if (env->c == 7)
+	{
+		draw_minimap(env);
+		draw_weapon(env);
+		draw_player_on_minimap(env);
+		draw_player_dir_on_minimap(env);
+	}
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 	return (0);
 }

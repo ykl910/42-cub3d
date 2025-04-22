@@ -16,6 +16,7 @@
 		"limits": "c",
 		"new": "c",
 		"type_traits": "c",
-		"typeinfo": "c"
+		"typeinfo": "c",
+		"libft.h": "c"
 	}
 }

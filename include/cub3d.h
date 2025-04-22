@@ -6,7 +6,7 @@
 /*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 16:57:05 by kyang             #+#    #+#             */
-/*   Updated: 2025/04/22 11:52:10 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/22 12:15:39 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,8 +184,6 @@ void	draw_player_dir_on_minimap(t_env *env);
 // door
 void	open_door(t_env *env);
 void	close_door(t_env *env);
-int		is_open_door(t_env *env);
-int		is_close_door(t_env *env);
 
 // weapon
 void	weapon_init(t_env *env);
