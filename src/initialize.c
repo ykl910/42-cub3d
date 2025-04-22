@@ -6,7 +6,7 @@
 /*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 12:55:05 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/17 17:52:18 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/22 11:52:29 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	init_env(t_env *env)
 	env->addr = NULL;
 	env->mlx = NULL;
 	env->win = NULL;
+	env->split_line = NULL;
 }
 
 void	init_mlx(t_env	*env)

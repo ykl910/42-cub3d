@@ -7,6 +7,15 @@
 		"mlx.h": "c",
 		"stdio.h": "c",
 		"cub3d.h": "c",
-		"cmath": "cpp"
+		"cmath": "cpp",
+		"climits": "c",
+		"cstdarg": "c",
+		"cstdio": "c",
+		"cstdlib": "c",
+		"exception": "c",
+		"limits": "c",
+		"new": "c",
+		"type_traits": "c",
+		"typeinfo": "c"
 	}
 }

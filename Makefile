@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kyang <kyang@student.42.fr>                +#+  +:+       +#+         #
+#    By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/31 16:25:43 by kyang             #+#    #+#              #
-#    Updated: 2025/04/17 16:26:31 by kyang            ###   ########.fr        #
+#    Updated: 2025/04/22 11:04:49 by tbellest         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3d
+NAME = cub3D
 
 SRCDIR = src
 OBJDIR = obj

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 14:35:41 by kyang             #+#    #+#             */
-/*   Updated: 2025/04/17 16:53:18 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/22 11:55:54 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,32 @@ void	parse_wall_texture(char **split_line, t_env *env, int i)
 {
 	if (ft_strncmp(split_line[i], "NO", 2) == 0)
 	{
+		if (env->texture_path[3] != NULL)
+			ft_invalid("Invalid texture key\n", env, NULL);
 		env->texture_path[3] = ft_strndup(split_line[i + 1],
 				ft_strlen(split_line[i + 1]) - 1);
 		env->parsed_texture++;
 	}
 	else if (ft_strncmp(split_line[i], "SO", 2) == 0)
 	{
+		if (env->texture_path[2] != NULL)
+			ft_invalid("Invalid texture key\n", env, NULL);
 		env->texture_path[2] = ft_strndup(split_line[i + 1],
 				ft_strlen(split_line[i + 1]) - 1);
 		env->parsed_texture++;
 	}
 	else if (ft_strncmp(split_line[i], "WE", 2) == 0)
 	{
+		if (env->texture_path[1] != NULL)
+			ft_invalid("Invalid texture key\n", env, NULL);
 		env->texture_path[1] = ft_strndup(split_line[i + 1],
 				ft_strlen(split_line[i + 1]) - 1);
 		env->parsed_texture++;
 	}
 	else if (ft_strncmp(split_line[i], "EA", 2) == 0)
 	{
+		if (env->texture_path[0] != NULL)
+			ft_invalid("Invalid texture key\n ", env, NULL);
 		env->texture_path[0] = ft_strndup(split_line[i + 1],
 				ft_strlen(split_line[i + 1]) - 1);
 		env->parsed_texture++;
@@ -91,23 +99,23 @@ void	parse_floor_ceiling_door(char **split_line, t_env *env, int i)
 
 void	parse_texture(char *line, t_env *env)
 {
-	char	**split_line;
 	int		i;
 
-	split_line = ft_split(line, ' ');
-	if (!split_line)
+	env->split_line = ft_split(line, ' ');
+	if (!env->split_line)
 		ft_invalid("Memory allocation failed", env, line);
 	i = 0;
-	while (split_line[i])
+	while (env->split_line[i])
 	{
-		parse_wall_texture(split_line, env, i);
-		parse_floor_ceiling_door(split_line, env, i);
+		parse_wall_texture(env->split_line, env, i);
+		parse_floor_ceiling_door(env->split_line, env, i);
 		i++;
 	}
 	if (i > 2)
 	{
-		free_char_arr(split_line);
+		free_char_arr(env->split_line);
 		ft_invalid("Invalid texture format", env, line);
 	}
-	free_char_arr(split_line);
+	free_char_arr(env->split_line);
+	env->split_line = NULL;
 }

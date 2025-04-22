@@ -6,7 +6,7 @@
 /*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 16:57:05 by kyang             #+#    #+#             */
-/*   Updated: 2025/04/17 17:51:26 by tbellest         ###   ########.fr       */
+/*   Updated: 2025/04/22 11:52:10 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ typedef struct s_env
 	char		*texture_path[8];
 	int			ceiling_color;
 	int			floor_color;
-	int			bonus;
 	int			c;
 	int			door_opened;
 	int			player_count;
@@ -111,6 +110,7 @@ typedef struct s_env
 	int			is_shooting;
 	int			shooting_timer;
 	int			parsed_texture;
+	char		**split_line;
 }	t_env;
 
 typedef struct s_player

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbellest <tbellest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:34:38 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/17 16:54:00 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/22 11:53:08 by tbellest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int	ft_invalid(char *error_message, t_env *env, char *line)
 	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(error_message, 2);
 	get_next_line(-1);
-	free_ressources(env);
+	if (env)
+		free_ressources(env);
 	if (line)
 		free(line);
 	exit(1);
@@ -56,6 +57,8 @@ void	free_ressources(t_env *env)
 	int	i;
 
 	i = -1;
+	if (env->split_line)
+		free_char_arr(env->split_line);
 	while (++i < env->map->h_max)
 		free(env->map->final_map[i]);
 	if (env->map->final_map)
