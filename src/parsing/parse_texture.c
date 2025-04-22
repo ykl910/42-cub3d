@@ -6,7 +6,7 @@
 /*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 14:35:41 by kyang             #+#    #+#             */
-/*   Updated: 2025/04/22 12:43:54 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/22 12:49:11 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ void	parse_texture(char *line, t_env *env)
 
 	env->split_line = ft_split(line, ' ');
 	if (!env->split_line)
-		ft_invalid("Memory allocation failed", env, line);
+		ft_invalid("Memory allocation failed\n", env, line);
 	i = 0;
 	while (env->split_line[i])
 		i++;
 	if (i > 2)
-		ft_invalid("Invalid texture format", env, line);
+		ft_invalid("Invalid texture format\n", env, line);
 	parse_wall_texture(env->split_line, env, line);
 	parse_floor_ceiling_door(env->split_line, env, line);
 	free_char_arr(env->split_line);
