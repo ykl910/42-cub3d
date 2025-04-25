@@ -6,7 +6,7 @@
 /*   By: kyang <kyang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:34:38 by tbellest          #+#    #+#             */
-/*   Updated: 2025/04/22 12:48:09 by kyang            ###   ########.fr       */
+/*   Updated: 2025/04/25 12:10:41 by kyang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,26 +99,4 @@ char	*ft_calloc_two(int count, size_t size)
 	}
 	p[i] = '\0';
 	return (p);
-}
-
-int	color_convert(char *color, t_env *env)
-{
-	int		r;
-	int		g;
-	int		b;
-	char	**temp;
-
-	temp = ft_split(color, ',');
-	if (!temp || !temp[0] || !temp[1] || !temp[2])
-	{
-		free_char_arr(temp);
-		return (0);
-	}
-	r = ft_atoi(temp[0]);
-	g = ft_atoi(temp[1]);
-	b = ft_atoi(temp[2]);
-	free_char_arr(temp);
-	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
-		ft_invalid("Invalid color value\n", env, NULL);
-	return (((r & 0xFF) << 16) | ((g & 0xFF) << 8) | (b & 0xFF));
 }
