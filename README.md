@@ -51,3 +51,10 @@ make
 ```bash
 ./cub3D [map_file]
 ```
+
+## Author  
+**ykl910** – 42 Paris student  
+**tomblst** - 42 Paris student  
+GitHub: [ykl910](https://github.com/ykl910) [tomblst](https://github.com/tomblst)
+
+
